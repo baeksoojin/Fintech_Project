@@ -1,0 +1,4 @@
+- static file 작성시 css, image, js 나누기
+- template에서 사용하기
+    {% load static %} => 필수
+    ex)  href = '{% static "폴더명/파일명" %}'
