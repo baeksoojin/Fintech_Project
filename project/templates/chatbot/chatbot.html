@@ -1,0 +1,11 @@
+
+<form name="chatbot_form"  action="{% url 'Chatbot:chatbot' %}" method = "POST" >
+    {% csrf_token %}
+    <label>text를 입력</label>
+    <input class="chatbot_input" type="text" name="text">
+    <input class="btn" type="submit" value="전송">
+</form>
+
+{% if text %}
+<p>{{text}}</p>
+{% endif %}
