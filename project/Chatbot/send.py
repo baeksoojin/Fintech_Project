@@ -89,7 +89,7 @@ if __name__ == '__main__':
 
     text = "안녕"
     res = ChatbotMessageSender().req_message_send(text)
-
+    
     print(res.status_code)
     if(res.status_code == 200):
         print(res.text)
