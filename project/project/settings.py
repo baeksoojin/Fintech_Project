@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # 'Accounts',
+    'user',
     
     'allauth',
     'allauth.account',
@@ -143,6 +143,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #사용자 User모델 필요할경우 -> AUTH_USER_MODEL = '앱이름.User'
+
+AUTH_USER_MODEL = 'user.User'
 
 AUTHENTICATION_BACKENDS = (
     #Needed to login by username in Django admin, regardless of 'allauth'
