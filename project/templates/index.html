@@ -15,7 +15,7 @@
             {{request.session.username}}님
             <a href="{% url 'user:logout' %}">로그아웃</a>
         {% else %}
-            {{ user.username }} 
+            {{ user.email }} 
             <a href="/accounts/logout">구글 로그아웃</a></br>
         {% endif %}
     {% else %}
