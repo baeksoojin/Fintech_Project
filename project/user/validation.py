@@ -13,3 +13,10 @@ def validate_email(value):
 def validate_password(password):
     if len(password) <= 10 and len(password)>=6:
         return "true_pw"
+
+def validate_phone(value):
+    phone_reg= r"^\+?1?\d{8,15}$"
+    regex = re.compile(phone_reg)
+
+    if not regex.match(value):
+        return "false_phone"

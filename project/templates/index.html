@@ -10,8 +10,8 @@
 
 <div style="margin:10px 0;line-height:180%;border-top:solid 3px #3388cc;">
     
-    {% if request.session.email or user.is_authenticated %}
-        {% if request.session.email %} 
+    {% if request.session.phoneNumber or user.is_authenticated %}
+        {% if request.session.phoneNumber %} 
             {{request.session.username}}님
             <a href="{% url 'user:logout' %}">로그아웃</a>
         {% else %}
