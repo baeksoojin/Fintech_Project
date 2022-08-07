@@ -13,18 +13,21 @@
     {% if request.session.phoneNumber or user.is_authenticated %}
         {% if request.session.phoneNumber %} 
             {{request.session.username}}님
-            <a href="{% url 'user:logout' %}">로그아웃</a>
+            <a href="{% url 'user:logout' %}">로그아웃</a></br>
         {% else %}
             {{user.email}}
             <a href="/accounts/logout">소셜 로그아웃</a></br>
         {% endif %}
-        <a href="{% url 'user:connect' %}">연결하기</a>
+        <a href="{% url 'user:connect' %}">연결 요청하기</a></br>
+        <a href="{% url 'user:check' %}">요청 확인하기</a></br>
     {% else %}
         <a href="{% url 'user:login' %}">로그인</a></br>
         <a href="{% provider_login_url 'google' %}">구글 로그인</a></br>
         <a href="{% provider_login_url 'kakao' %}">카카오 로그인</a></br>
         <small>아직 계정이 없으신가요?</small>
-        <a href="{% url 'user:signup' %}">회원가입</a>
+        <a href="{% url 'user:signup' %}">회원가입</a></br>
     {% endif %}
+
+    
 
 </div>

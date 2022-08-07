@@ -136,4 +136,19 @@ def Connect(request):
     else:
         return render(request,"user/connect.html")
         
-    
+
+def Check(request):
+    user = User
+    member = user.objects.get(phoneNumber=request.session.get('phoneNumber'))
+    if member.connect:
+        jsonDecoder= json.decoder.JSONDecoder()
+        connection_list = jsonDecoder.decode(member.connect)
+        print("현재 connection 요쳥 : ",connection_list[0])
+        member2 = user.objects.get(phoneNumber=connection_list[0])
+        res_data={}
+        res_data['name'] = member2.username
+        return render(request,"user/check.html",res_data)
+    else:
+        res_data['nan'] ="연겨요청이 없습니다"
+        return render(request,"user/check.html",res_data)
+
