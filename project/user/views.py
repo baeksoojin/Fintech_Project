@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from user.models import User
 from .validation import *
+import json
 
 # Create your views here.
 def Signup(request):
@@ -76,3 +77,63 @@ def Logout(request):
     except:
         pass
     return redirect('/')
+
+
+def Connect(request):
+    if request.method == "POST":
+        opponent  = request.POST["opponent"]
+        phoneNumber = request.POST["phoneNumber"]
+
+        res_data ={}
+
+        #error처리
+        member = User
+        if not member.objects.filter(phoneNumber=phoneNumber).exists:
+            res_data['error'] = "없는 계정입니다"
+            return render(request,"user/commect.html",res_data)
+            
+
+        if opponent == "grandchild":
+            print("손주에게 연결을 요청합니다.")
+            #+8201011111111 tester1
+            grandch = member.objects.get(phoneNumber=phoneNumber)
+            print(grandch.phoneNumber)
+            print(request.session.get('phoneNumber'))
+
+            if grandch.connect=='null':
+                grandch.connect = json.dumps([request.session.get('phoneNumber')])
+                grandch.save()
+            else:
+                jsonDecoder= json.decoder.JSONDecoder()
+                connection_list = jsonDecoder.decode(grandch.connect)
+                connection_lists =  connection_list.append(request.session.get('phoneNumber'))
+                grandch.connect =  json.dumps(connection_lists)
+                grandch.save()
+
+            
+        if opponent == "grandparent":
+            print("조부모에게 연결을 요청합니다.")
+            #+8201098765432 tester2
+            grandpa = member.objects.get(phoneNumber=phoneNumber)
+            print(grandpa.phoneNumber)
+
+            if not grandpa.connect:
+                print("here")
+                print([request.session.get('phoneNumber')])
+                print(type(json.dumps([request.session.get('phoneNumber')])))
+                grandpa.connect = json.dumps([request.session.get('phoneNumber')])
+                grandpa.save()
+            else:
+                jsonDecoder= json.decoder.JSONDecoder()
+                connection_list = jsonDecoder.decode(grandpa.connect)
+                connection_lists =  connection_list.append(request.session.get('phoneNumber'))
+                grandpa.connect =  json.dumps(connection_lists)
+                # grandpa.save()
+
+
+        
+        return redirect('/')
+    else:
+        return render(request,"user/connect.html")
+        
+    
