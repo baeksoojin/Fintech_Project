@@ -15,12 +15,13 @@
             {{request.session.username}}님
             <a href="{% url 'user:logout' %}">로그아웃</a>
         {% else %}
-            {{ user.email }} 
-            <a href="/accounts/logout">구글 로그아웃</a></br>
+            {{user.email}}
+            <a href="/accounts/logout">소셜 로그아웃</a></br>
         {% endif %}
     {% else %}
-        <a href="{% url 'user:login' %}">로그인</a>
+        <a href="{% url 'user:login' %}">로그인</a></br>
         <a href="{% provider_login_url 'google' %}">구글 로그인</a></br>
+        <a href="{% provider_login_url 'kakao' %}">카카오 로그인</a></br>
         <small>아직 계정이 없으신가요?</small>
         <a href="{% url 'user:signup' %}">회원가입</a>
     {% endif %}
