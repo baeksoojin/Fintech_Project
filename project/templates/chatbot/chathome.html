@@ -1,0 +1,137 @@
+<html>
+    <head>
+        
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <title>챗봇</title>
+        {% block scripts %}
+        <script> 
+
+        function getCookie(name) {
+            var cookieValue = null;
+            if (document.cookie && document.cookie != '') {
+                var cookies = document.cookie.split(';');
+                let i=0;
+                for (i; i < cookies.length; i++) {
+                    var cookie = jQuery.trim(cookies[i]);
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+        var csrftoken = getCookie('csrftoken');
+        var xhr;
+        
+        function chatTrain(){
+            alert('chatTrain...');
+        }
+        function sendAsk(){
+            text = document.getElementById('chattext').value;
+            if(text == ""){
+                document.getElementById('chattext').focus();
+                return false;
+            }
+            console.log('text');
+            addtext = "<div style='margin:14px 0; text-align : right'><span style='background-color:#3388cc; padding:5px' border-radius:3px;>" + text + "</span><div>"
+            document.getElementById('chatbox').innerHTML += addtext;
+
+            const strurl = "chatbot?text="+text;
+            console.log(strurl);
+
+            xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function(){
+                if(xhr.readyState == 4){
+                    var data = xhr.responseText;
+                    var obj =JSON.parse(data);
+                    console.log(typeof(obj));
+                    console.log(obj.text);
+                    const text_data = JSON.parse(obj.text);
+                    answer = text_data['bubbles'][0].data['description']
+                    if(!answer){
+                        answer = text_data['bubbles'][0].data['cover']['data'].description}
+                    console.log(answer);
+                    if(obj.flag == "0"){
+
+                        bottext = "<div style='margin:15px 0;text-align:left;'><span style='padding:3px 10px;background-color:#DDD;border-radius:3px;'>" + answer + "</span></div>";
+                        document.getElementById("chatbox").innerHTML += bottext;
+
+                        var objDiv = document.getElementById("chatbox");
+                        objDiv.scrollTop = objDiv.scrollHeight;
+
+                        document.getElementById("chattext").value = "";
+                        document.getElementById("chattext").focus();
+
+                    }
+                }
+            };
+            xhr.open("GET",strurl);
+            xhr.setRequestHeader("X-CSRFToken",csrftoken);
+            xhr.send(null);
+        }
+    </script>
+    {% endblock %}
+    {% block styles %}
+    <style>
+        .chatheader{
+            position:fixed;
+            left:0;
+            top:0;
+            width: 100%;
+            padding:18px 0;
+            background-color: #DDD;
+            color:#000;
+            text-align: center;
+        }
+        .chatfooter{
+            position:fixed;
+            left:0;
+            bottom:0;
+            width: 100%;
+            padding:18px 0;
+            background-color: #FFF;
+            color:#000;
+            text-align: center;
+        }
+
+    </style>
+    {% endblock %}
+        
+</head>
+
+<body style="height:100%; background-color: #BBCCDD; " class="vsc-initialized">
+
+    <div style="padding:8px; height:100%; background: color #e8e8e8;">
+        <div class="chatheader">top
+            <table width="100%">
+                <tbody><tr>
+                    <td style="width:50%; text-align:left;">My chat</td>
+                    <td style="width:50%; text-align:right;">
+                        <span onclick="chatTrain()" style="cursor:pointer">Me</span>
+                    </td>
+                </tr>
+            </tbody></table>
+        </div>
+        <div style="height: 450px; margin-top: 100px; background-color: #BBCCDD;" id="chatbox">
+        <div class="chatfooter">
+            <table width="100%">
+                <tbody><tr>
+                    <td style="width:85%; text-align:left;">
+                        <input type="text" id="chattext" style="padding: 10px 0; width: 100%;">    
+                    </td>
+                    <td style="width:15%; text-align:right;">
+                        <button style="padding: 10px 0; width: 100%;" onclick="sendAsk()">send</button>
+                    </td>
+                </tr>
+            </tbody></table>
+        </div>
+    </div>
+
+
+
+</body></html>
+
