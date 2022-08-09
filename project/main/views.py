@@ -6,3 +6,9 @@ def home(request):
 
 def enjoy(request):
     return render(request,'enjoy.html')
+
+def pinmoney(request):
+    return render(request,'pinmoney.html')
+
+def mylogin(request):
+    return render(request,'login_index.html')
