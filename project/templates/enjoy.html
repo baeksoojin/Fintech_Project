@@ -16,7 +16,6 @@
     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'img/icon/192x192.png'%} ">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
-
 <body>
 
     <!-- loader -->
@@ -35,176 +34,219 @@
         <div class="pageTitle">
             내리사랑
         </div>
-        <div class="right">
-            <a href="#" class="headerButton toggle-searchbox">
-                <ion-icon name="search-outline"></ion-icon>
-            </a>
-        </div>
+        
     </div>
     <!-- * App Header -->
 
     <!-- Search Component -->
-    <div id="search" class="appHeader">
-        <form class="search-form">
-            <div class="form-group searchbox">
-                <input type="text" class="form-control" placeholder="Search...">
-                <i class="input-icon">
-                    <ion-icon name="search-outline"></ion-icon>
-                </i>
-                <a href="#" class="ms-1 close toggle-searchbox">
-                    <ion-icon name="close-circle"></ion-icon>
-                </a>
-            </div>
-        </form>
-    </div>
-    <!-- * Search Component -->
     
+    <!-- * Search Component -->
 
     <!-- App Capsule -->
-    
+
     <div id="appCapsule">
 
-         <!-- carousel multiple -->
+
+        <div class="header-large-title">
+            <h1 class="title">오락마당</h1>
+            <h4 class="subtitle">친구들도 만나고 홈쇼핑도 즐기고</h4>
+        </div>
 
         <div class="section full mt-3 mb-3">
 
-            <div class="section mt-3 mb-3">
-                <div class="card">
-                    <div class="card-body d-flex justify-content-between align-items-end">
-                        <div >
-                            <img src="{% static 'img/mark_.png'%} " style="width: 100px;" class="card-img-top" alt="image">  </div>
-                        <div >
-                            <h>안녕하세요,내리사랑입니다</h><br>
-                            <h>가족결합용 재밌는 미션을 통해 손주에게 용돈주기 어떠세요?</h>
-                            <h5 class="card-title mb-0 d-flex align-items-center justify-content-between" >시니어를 위한 가족결합형 금융플랫폼</h5>
-                        </div>
+            <!-- carousel multiple -->
+            <div class="carousel-multiple splide">
+                <div class="splide__track">
+                    <ul class="splide__list">
+                        <li class="splide__slide">
+                            <div class="card">
+                                <img src="{% static 'img/enjoy12.png' %}" class="card-img-top" alt="image" >
+                            </div>
+                        </li>
                         
-                        <div class="form-check form-switch">
-                            <input class="form-check-input dark-mode-switch" type="checkbox" id="darkmodecontent">
-                            <label class="form-check-label" for="darkmodecontent"></label>
-                        </div>
-        
-                    </div>
+
+                    </ul>
                 </div>
             </div>
-
             <!-- * carousel multiple -->
 
         </div>
-        
-        {% load socialaccount %}
 
-        <div style="margin:10px 0;line-height:180%;border-top:solid 3px #3388cc;">
-            
-            {% if request.session.phoneNumber or user.is_authenticated %}
-                {% if request.session.phoneNumber %} 
-                    {{request.session.username}}님
-                    <a href="{% url 'user:logout' %}">로그아웃</a></br>
-                {% else %}
-                    {{user.email}}
-                    <a href="/accounts/logout">소셜 로그아웃</a></br>
-                {% endif %}
-                <a href="{% url 'user:connect' %}">연결 요청하기</a></br>
-                <a href="{% url 'user:check' %}">요청 확인하기</a></br>
-            {% else %}
-                <a href="{% url 'user:login' %}">로그인</a></br>
-                <a href="{% provider_login_url 'google' %}">구글 로그인</a></br>
-                <a href="{% provider_login_url 'kakao' %}">카카오 로그인</a></br>
-                <small>아직 계정이 없으신가요?</small>
-                <a href="{% url 'user:signup' %}">회원가입</a></br>
-            {% endif %}
-
-            
-
-        </div>
-        {% load static %}
-    
-        <div class="header-large-title">
-           
-            <br>
-            
-        </div> 
-        <div class="section mt-3 mb-3"  style = "float: left; width: 50%;">
-            <div class="card" >
-                <div class="card-body">
-                    <h5 class="card-title" style = "font-size: 25px; ">용돈주기</h5>
-                    <h6 class="card-subtitle" style="font-size: 20px;"><p>가족과 쉽게 주고 받고</p></h6>
-                    <img src="{% static 'img/money.png'%} " class="card-img-top" alt="image">
-                </div>
-            </div>
-        </div>
-
-        <div class="section mt-3 mb-3"  style = "float: left; width: 50%;">
-            <div class="card" >
-                <div class="card-body">
-                    <h5 class="card-title" style = "font-size: 25px;">미션주기</h5>
-                    <h6 class="card-subtitle" style="font-size: 20px;"><p>재밌는 미션으로 가족과 친해지기</p> </h6>
-                    <img src="{% static 'img/money.png'%} " class="card-img-top" alt="image" >
-                </div>
-            </div>
-        </div>
-
-        <div class="section mt-3 mb-3" style = "float: left; width: 50%;">
-            <div class="card" >
-                <div class="card-body">
-                    <h5 class="card-title" style = "font-size: 25px;">증여관리</h5>
-                    <h6 class="card-subtitle" style="font-size: 20px;"><p>친절하고 쉬운 증여 도우미</p></h6>
-                    <img src="{% static 'img/money.png'%} " class="card-img-top" alt="image">
-                </div>
-            </div>
-        </div>
-        <a href = "{% url 'main:enjoy' %}">
-            <div class="section mt-3 mb-3" style = "float: left; width: 50%;">
-                <div class="card" >
-                    <div class="card-body">
-                        <h5 class="card-title" style = "font-size: 25px;">오락마당</h5>
-                        <h6 class="card-subtitle" style="font-size: 20px;"><p>친구들도 만나고 홈쇼핑도 즐기고</p> </h6>
-                        <img src="{% static 'img/money.png'%} " class="card-img-top" alt="image" >
-                    </div>
-                </div>
-            </div>
-
-        </a>
-        
+        <!--나를 위한 추천상품-->
 
         <div class="section mt-3 mb-3">
             <div class="card-body d-flex justify-content-between">
             
-                <div style="width: 80%;"><h1>나를 위한 혜택 </h1></div>
+                <div style="width: 80%;"><h1>나를 위한 추천상품</h1></div>
+                <div style="width: 20%;"><p style="font-size: 20px;">더보기</p></div>
+            </div>
+        </div>
+        <div class="section mt-3 mb-3">
+            <div class="card-body d-flex justify-content-between">
+                <div style="width: 20%;">
+                    <img src="{% static 'img/enjoy4.png' %}"  alt="image" style="width:100%; padding: 5%;"class="imaged rounded">
+                    <p style="width: 100%; padding: 5%; text-align: center;">명품선물</p>
+                </div>
+                <div style="width: 20%;">
+                    <img src="{% static 'img/enjoy5.png' %}"  alt="image" style="width:100%; padding: 5%;"class="imaged rounded">
+                    <p style="width: 100%; padding: 5%; text-align: center;">유아용</p>
+                </div>
+                <div style="width: 20%;">
+                    <img src="{% static 'img/enjoy6.png' %}"  alt="image" style="width:100%; padding: 5%;"class="imaged rounded">
+                    <p style="width: 100%; padding: 5%; text-align: center;">건강식품</p>
+                </div>
+                <div style="width: 20%;">
+                    <img src="{% static 'img/enjoy7.png' %}"  alt="image" style="width:100%; padding: 5%;"class="imaged rounded">
+                    <p style="width: 100%; padding: 5%; text-align: center;">패션뷰티</p>
+                </div>
+            </div>
+        </div>
+        <div class="section mt-3 mb-3">
+            <div class="card-body d-flex justify-content-between">
+                <div style="width: 20%;">
+                    <img src="{% static 'img/enjoy8.png' %}"  alt="image" style="width:100%;  padding: 5%;"class="imaged rounded">
+                    <p style="width: 100%; padding: 5%; text-align: center;">여행상품</p>
+                </div>
+                <div style="width: 20%;">
+                    <img src="{% static 'img/enjoy11.png' %}"  alt="image" style="width:100%;  padding: 5%;"class="imaged rounded">
+                    <p style="width: 100%; padding: 5%; text-align: center;">스포츠</p>
+                </div>
+                <div style="width: 20%;">
+                    <img src="{% static 'img/enjoy10.png' %}"  alt="image" style="width:100%;  padding: 5%;"class="imaged rounded">
+                    <p style="width: 100%; padding: 5%; text-align: center;">전자가전</p>
+                </div>
+                <div style="width: 20%;">
+                    <img src="{% static 'img/enjoy9.png' %}"  alt="image" style="width:100%;  padding: 5%;"class="imaged rounded">
+                    <p style="width: 100%; padding: 5%; text-align: center;">기타</p>
+                </div>
+            </div>
+        </div>
+
+        <!--나를 위한 추천상품-->
+
+        <!-- 건강을 위해 노력해요 -->
+
+        <div class="section mt-3 mb-3">
+            <div class="card-body d-flex justify-content-between">
+            
+                <div style="width: 80%;"><h1><span style="color : #F77E21">건강</span>을 위해 노력해요!</h1></div>
+                <div style="width: 20%;"><p style="font-size: 20px;">더보기</p></div>
+            </div>
+            
+        </div>
+        <div class="section mt-3 mb-3">
+            <div class="card">
+                <div class="card-body d-flex justify-content-between" style="align-items: center;">
+                    <div style="width: 70%;">
+                        <h5 class="card-title mb-0 d-flex align-items-center justify-content-between">
+                            하루에 한번!<br>건강에 좋은 스트레칭
+                        </h5>
+                    </div>
+                    <div style="width: 30%;">
+                        <img src="{% static 'img/enjoy_1.png' %}"  alt="image" style="width: 100%;">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section mt-3 mb-3">
+            <div class="card">
+                <div class="card-body d-flex justify-content-between" style="align-items: center;">
+                    <div style="width: 70%;">
+                        <h5 class="card-title mb-0 d-flex align-items-center justify-content-between">
+                            몸에 좋은 음식<br>10가지 완.벽.정.리
+                        </h5>
+                    </div>
+                    <div style="width: 30%;">
+                        <img src="{% static 'img/enjoy_2.png' %}"  alt="image" style="width: 100%;">
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+        <div class="section mt-3 mb-3">
+            <div class="card">
+                <div class="card-body d-flex justify-content-between" style="align-items: center;">
+                    <div style="width: 70%;">
+                        <h5 class="card-title mb-0 d-flex align-items-center justify-content-between">
+                            100세 할머니의 <br>건강 비결은?
+                        </h5>
+                    </div>
+                    <div style="width: 30%;">
+                        <img src="{% static 'img/enjoy_3.png' %}"  alt="image" style="width: 100%;">
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+        <!-- 건강을 위해 노력해요 -->
+
+        <!-- 온라인 소통마당 -->
+
+        <div class="section mt-3 mb-3">
+            <div class="card-body d-flex justify-content-between">
+            
+                <div style="width: 80%;"><h1>온라인 <span style="color : #F77E21">소통마당</span></h1></div>
                 <div style="width: 20%;"><p style="font-size: 20px;">더보기</p></div>
             </div>
             <h3></h3>
         </div>
-
-        <div class="section mt-3 mb-3" style="margin-top: 10%;">
-            <div class="card" >
-                <div class="card-body d-flex justify-content-between" style="text-align: center;">
-                    <h6 class="card-title" style = "font-size: 25px; width: 20%;">아름다운 이야기할머니</h6>
-                    <p3 class="card-subtitle" style="font-size: 20px; width: 50%;">아이들에게 옛날 이야기를 들려주세요!</p3>
-                    <button type="button" class="btn btn-outline-primary shadowed me-1 mb-1" style="color:chocolate; width : 20%; font-weight: bolder;">나를 위한 일자리 추천</button>
+        <div class="section mt-3 mb-3">
+            <div class="card">
+                <div class="card-body d-flex justify-content-between" style="align-items: center;">
+                    <div style="width: 30%;">
+                        <img src="{% static 'img/enjoy15.png' %}"  alt="image" style="width: 100%; padding: 20%;">
+                    </div>
+                    <div style="width: 70%;">
+                        <h3 class="card-title mb-0 d-flex align-items-center justify-content-between">
+                            골프
+                        </h3>
+                        <p style="font-size: 20px;">이번에 제주도 가려는데 어디 골프장이 좋을까요?? 추천해주세요!...</p>
+                    </div>
                 </div>
             </div>
         </div>
-   
-        <!-- app footer -->
-        
-        <div class="appFooter">
-            <img src="{% static 'img/mark.png'%} " style="width: 50px; margin-top:10%;" class="card-img-top" alt="image">
-            <div class="footer-title" style="margin-top:5%;">
-                Copyright © 핀테크 인턴십코스 4조 <span class="yearNow"></span>
+
+        <div class="section mt-3 mb-3">
+            <div class="card">
+                <div class="card-body d-flex justify-content-between" style="align-items: center;">
+                    <div style="width: 30%;">
+                        <img src="{% static 'img/enjoy13.png' %}"  alt="image" style="width: 100%; padding: 20%;">
+                    </div>
+                    <div style="width: 70%;">
+                        <h3 class="card-title mb-0 d-flex align-items-center justify-content-between">
+                            관절염
+                        </h3>
+                        <p style="font-size: 20px;">관절염이 심해지는데 병원에서 수술한 분들 있나요? 수술하면 어쩌죠....비용이....</p>
+                    </div>
+                </div>
+                
             </div>
         </div>
-    
-        <!-- * app footer -->
 
-    </div>
-    <!-- * App Capsule -->
+        <div class="section mt-3 mb-3">
+            <div class="card">
+                <div class="card-body d-flex justify-content-between" style="align-items: center;">
+                    <div style="width: 30%;">
+                        <img src="{% static 'img/enjoy14.png' %}"  alt="image" style="width: 100%; padding: 20%;">
+                    </div>
+                    <div style="width: 70%;">
+                        <h3 class="card-title mb-0 d-flex align-items-center justify-content-between">
+                            부산
+                        </h3>
+                        <p style="font-size: 20px;">시민공원에서 야무진 트로트 소리가 들리는데 지금 무슨 페스티벌 하나요?...</p>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
 
-    
+    <!-- 온라인 소통마당 -->
 
-
-    <!-- App Bottom Menu -->
-    <div class="appBottomMenu">
+     <!-- App Bottom Menu -->
+     <div class="appBottomMenu">
         
         <!-- <a href="/chatbot/" class="item">
             <div class="col">
@@ -230,6 +272,7 @@
     </div>
     <!-- * App Bottom Menu -->
 
+    
     <!-- App Sidebar -->
     <div class="offcanvas offcanvas-start" tabindex="-1" id="sidebarPanel">
         <div class="offcanvas-body">
@@ -283,7 +326,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/chatbot/" class="item">
+                    <a href="page-chat.html" class="item">
                         <div class="icon-box bg-primary">
                             <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
                         </div>
@@ -314,7 +357,7 @@
             </div>
             <ul class="listview image-listview flush transparent no-line">
                 <li>
-                    <a href="/chatbot/" class="item">
+                    <a href="page-chat.html" class="item">
                         <img src="{% static 'img/sample/avatar/avatar7.jpg' %}" alt="image" class="image">
                         <div class="in">
                             <div>Sophie Asveld</div>
@@ -322,7 +365,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/chatbot/" class="item">
+                    <a href="page-chat.html" class="item">
                         <img src="{% static 'img/sample/avatar/avatar3.jpg' %}" alt="image" class="image">
                         <div class="in">
                             <div>Sebastian Bennett</div>
@@ -331,7 +374,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/chatbot/" class="item">
+                    <a href="page-chat.html" class="item">
                         <img src="{% static 'img/sample/avatar/avatar10.jpg' %}" alt="image" class="image">
                         <div class="in">
                             <div>Beth Murphy</div>
@@ -339,7 +382,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/chatbot/" class="item">
+                    <a href="page-chat.html" class="item">
                         <img src="{% static 'img/sample/avatar/avatar2.jpg' %}" alt="image" class="image">
                         <div class="in">
                             <div>Amelia Cabal</div>
@@ -347,7 +390,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/chatbot/" class="item">
+                    <a href="page-chat.html" class="item">
                         <img src="{% static 'img/sample/avatar/avatar5.jpg' %}" alt="image" class="image">
                         <div class="in">
                             <div>Henry Doe</div>
@@ -377,15 +420,15 @@
 
     <!-- ============== Js Files ==============  -->
     <!-- Bootstrap -->
-    <script src="/static/js/lib/bootstrap.min.js"></script>
+    <script src="{% static 'js/lib/bootstrap.min.js'%} "></script>
     <!-- Ionicons -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <!-- Splide -->
-    <script src="/static/js/plugins/splide/splide.min.js" ></script>
+    <script src="{% static 'js/plugins/splide/splide.min.js'%} "></script>
     <!-- ProgressBar js -->
-    <script src="/static/js/plugins/progressbar-js/progressbar.min.js"></script>
+    <script src="{% static 'js/plugins/progressbar-js/progressbar.min.js'%} "></script>
     <!-- Base Js File -->
-    <script src="/static/js/base.js"></script>
+    <script src="{% static 'js/base.js'%} "></script>
 
     <script>
         // Trigger welcome notification after 5 seconds
@@ -397,4 +440,3 @@
 </body>
 
 </html>
->>>>>>> main
