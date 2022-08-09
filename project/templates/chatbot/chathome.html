@@ -71,11 +71,13 @@
                     console.log(answer);
                     if(obj.flag == "0"){
 
+
                         bottext = "<div class='message-item'><img src='"+'{% static "img/chatbot.png" %}'+"'alt='avatar' class='avatar'><div class='content'><div class='title' style='font-size:15px;'>챗봇</div><div class='bubble' style='font-size:20px; font-weight : bold;'>" + answer + "</div></div></div>";
                                 
                         document.getElementById("appCapsule").innerHTML += bottext;
 
                         var objDiv = document.getElementById("appCapsule");
+
                         objDiv.scrollTop = objDiv.scrollHeight;
 
                         document.getElementById("chattext").value = "";
@@ -185,4 +187,5 @@
     </body>
 
 </html>
+
 
