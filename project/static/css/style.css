@@ -25,6 +25,19 @@ body {
   background: rgba(30, 116, 253, 0.3);
 }
 
+.new_card {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+}
+.new_card .new_card_area {
+  -webkit-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  min-width: 0;
+}
+
 a {
   transition: none;
   color: #F77E21;
@@ -4806,7 +4819,7 @@ textarea,
 }
 
 .form-switch {
-  height: 30px;
+  height: 100px;
 }
 
 .form-switch .form-check-label {
