@@ -12,8 +12,8 @@
     <title>내리사랑</title>
     <meta name="description" content="Mobilekit HTML Mobile UI Kit">
     <meta name="keywords" content="bootstrap 5, mobile template, cordova, phonegap, mobile, html" />
-    <link rel="icon" type="image/png" href="{% static 'img/mark.png' %}" sizes="32x32">
-    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'img/icon/192x192.png' %}">
+    <link rel="icon" type="image/png" href="{% static 'img/mark.png'%} " sizes="32x32">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'img/icon/192x192.png'%} ">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 
@@ -60,152 +60,132 @@
     <!-- * Search Component -->
 
     <!-- App Capsule -->
+    
     <div id="appCapsule">
 
-        <div class="header-large-title">
-            <img src="{% static 'img/mark.png' %}" style="width: 100px;" class="card-img-top" alt="image">
-            <!-- <h4 class="subtitle">안녕하세요, 트렌드한 시니어들의 금융 플랫폼에 오신걸 환영합니다</h4> -->
-        </div>
+         <!-- carousel multiple -->
 
         <div class="section full mt-3 mb-3">
 
-            <!-- carousel multiple -->
-            <div class="carousel-multiple splide">
-                <div class="splide__track">
-                    <ul class="splide__list">
-                        <li class="splide__slide">
-                            <div class="card">
-                                <img src="{% static 'img/child.png' %}" class="card-img-top" alt="image">
-                                <div class="card-body pt-2">
-                                    <h4 class="mb-0">용돈주기</h4>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="splide__slide">
-                            <div class="card">
-                                <img src="{% static 'img/sample/photo/d2.jpg' %}" class="card-img-top" alt="image">
-                                <div class="card-body pt-2">
-                                    <h4 class="mb-0">미션주기</h4>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="splide__slide">
-                            <div class="card">
-                                <img src="{% static 'img/sample/photo/d3.jpg' %}" class="card-img-top" alt="image">
-                                <div class="card-body pt-2">
-                                    <h4 class="mb-0">증여관리</h4>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="splide__slide">
-                            <div class="card">
-                                <img src="{% static 'img/sample/photo/d4.jpg' %}" class="card-img-top" alt="image">
-                                <div class="card-body pt-2">
-                                    <h4 class="mb-0">오락마당</h4>
-                                </div>
-                            </div>
-                        </li>
-                       
-                    </ul>
-                </div>
-            </div>
-            <!-- * carousel multiple -->
-
-        </div>
-
-
-        <div class="section mt-3 mb-3">
-            <div class="card">
-                <div class="card-body d-flex justify-content-between align-items-end">
-                    <div>
-                        <h6 class="card-subtitle">Discover</h6>
-                        <h5 class="card-title mb-0 d-flex align-items-center justify-content-between">
-                            Dark Mode
-                        </h5>
+            <div class="section mt-3 mb-3">
+                <div class="card">
+                    <div class="card-body d-flex justify-content-between align-items-end">
+                        <div >
+                            <img src="{% static 'img/mark_.png'%} " style="width: 100px;" class="card-img-top" alt="image">  </div>
+                        <div >
+                            <h>안녕하세요,내리사랑입니다</h><br>
+                            <h>가족결합용 재밌는 미션을 통해 손주에게 용돈주기 어떠세요?</h>
+                            <h5 class="card-title mb-0 d-flex align-items-center justify-content-between" >시니어를 위한 가족결합형 금융플랫폼</h5>
+                        </div>
+                        
+                        <div class="form-check form-switch">
+                            <input class="form-check-input dark-mode-switch" type="checkbox" id="darkmodecontent">
+                            <label class="form-check-label" for="darkmodecontent"></label>
+                        </div>
+        
                     </div>
-                    <div class="form-check form-switch">
-                        <input class="form-check-input dark-mode-switch" type="checkbox" id="darkmodecontent">
-                        <label class="form-check-label" for="darkmodecontent"></label>
-                    </div>
+                </div>
+            </div>
 
+    
+        <div class="header-large-title">
+           
+            <br>
+            
+        </div> 
+        <div class="section mt-3 mb-3">
+            <div class="card" style = "float: left; width: 50%; ">
+                <div class="card-body">
+                    <h5 class="card-title" style = "font-size: 25px; ">용돈주기</h5>
+                    <h6 class="card-subtitle" style="font-size: 20px;"><p>가족과 쉽게 주고 받고</p></h6>
+                    <img src="{% static 'img/money.png'%} " class="card-img-top" alt="image">
                 </div>
             </div>
         </div>
 
         <div class="section mt-3 mb-3">
-            <div class="card">
-                <img src="{% static 'img/sample/photo/wide4.jpg' %}" class="card-img-top" alt="image">
+            <div class="card" style = "float: left; width: 50%;">
                 <div class="card-body">
-                    <h6 class="card-subtitle">Discover</h6>
-                    <h5 class="card-title">Components</h5>
-                    <p class="card-text">
-                        Reusable components designed for the mobile interface and ready to use.
-                    </p>
-                    <a href="app-components.html" class="btn btn-primary">
-                        <ion-icon name="cube-outline"></ion-icon>
-                        Preview
-                    </a>
+                    <h5 class="card-title" style = "font-size: 25px;">미션주기</h5>
+                    <h6 class="card-subtitle" style="font-size: 20px;"><p>재밌는 미션으로 가족과 친해지기</p> </h6>
+                    <img src="{% static 'img/money.png'%} " class="card-img-top" alt="image" >
                 </div>
             </div>
         </div>
 
         <div class="section mt-3 mb-3">
-            <div class="card">
-                <img src="{% static 'img/sample/photo/wide2.jpg' %}" class="card-img-top" alt="image">
+            <div class="card" style = "float: left; width: 50%;">
                 <div class="card-body">
-                    <h6 class="card-subtitle">Discover</h6>
-                    <h5 class="card-title">Pages</h5>
-                    <p class="card-text">
-                        Mobilekit comes with basic pages you may need and use in your projects easily.
-                    </p>
-                    <a href="app-pages.html" class="btn btn-primary">
-                        <ion-icon name="layers-outline"></ion-icon>
-                        Preview
-                    </a>
+                    <h5 class="card-title" style = "font-size: 25px;">증여관리</h5>
+                    <h6 class="card-subtitle" style="font-size: 20px;"><p>친절하고 쉬운 증여 도우미</p></h6>
+                    <img src="{% static 'img/money.png'%} " class="card-img-top" alt="image">
                 </div>
             </div>
         </div>
 
+        <div class="section mt-3 mb-3">
+            <div class="card" style = "float: left; width: 50%;">
+                <div class="card-body">
+                    <h5 class="card-title" style = "font-size: 25px;">오락마당</h5>
+                    <h6 class="card-subtitle" style="font-size: 20px;"><p>친구들도 만나고 홈쇼핑도 즐기고</p> </h6>
+                    <img src="{% static 'img/money.png'%} " class="card-img-top" alt="image" >
+                </div>
+            </div>
+        </div>
 
+        <div class="section mt-3 mb-3">
+            <div><br><h2>나를 위한 혜택</h2></div>
+        </div>
+
+        <div class="section mt-3 mb-3" style="margin-top: 10%;">
+            <div class="card" style = "float: left; width: 100%;">
+                <div class="card-body d-flex justify-content-between align-items-end" >
+                    <h6 class="card-title" style = "font-size: 25px;">아름다운 이야기할머니</h6>
+                    <p3 class="card-subtitle" style="font-size: 20px;">아이들에게 옛날 이야기를 들려주세요!</p3>
+                    <button>나를 위한 일자리 추천</button>
+                </div>
+            </div>
+        </div>
+   
         <!-- app footer -->
+        
         <div class="appFooter">
-            <img src="{% static 'img/mark.png' %}" style="width: 50px;" class="card-img-top" alt="image">
+            <img src="{% static 'img/mark.png'%} " style="width: 50px; margin-top:10%;" class="card-img-top" alt="image">
             <div class="footer-title" style="margin-top:5%;">
                 Copyright © 핀테크 인턴십코스 4조 <span class="yearNow"></span>
             </div>
         </div>
+    
         <!-- * app footer -->
 
     </div>
     <!-- * App Capsule -->
 
+    
+
 
     <!-- App Bottom Menu -->
     <div class="appBottomMenu">
-        <a href="index.html" class="item active">
-            <div class="col">
-                <ion-icon name="home-outline"></ion-icon>
-            </div>
-        </a>
-        <a href="app-components.html" class="item">
-            <div class="col">
-                <ion-icon name="cube-outline"></ion-icon>
-            </div>
-        </a>
-        <a href="{% url 'Chatbot:chathome' %}" class="item">
+        
+        <!-- <a href="/chatbot/" class="item">
             <div class="col">
                 <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
                 <span class="badge badge-danger">5</span>
             </div>
-        </a>
+        </a> -->
         <a href="app-pages.html" class="item">
             <div class="col">
                 <ion-icon name="layers-outline"></ion-icon>
             </div>
         </a>
-        <a href="#sidebarPanel" class="item" data-bs-toggle="offcanvas">
+        <a href="/" class="item active">
             <div class="col">
-                <ion-icon name="menu-outline"></ion-icon>
+                <ion-icon name="home-outline"></ion-icon>
+            </div>
+        </a>
+        <a href="#" class="item" data-bs-toggle="offcanvas">
+            <div class="col">
+               <img src = "{% static 'img/mypage.png'%} " alt="mypage" class="imaged rounded " style="width:50px;">
             </div>
         </a>
     </div>
@@ -264,7 +244,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{% url 'Chatbot:chathome' %}" class="item">
+                    <a href="/chatbot/" class="item">
                         <div class="icon-box bg-primary">
                             <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
                         </div>
@@ -295,7 +275,7 @@
             </div>
             <ul class="listview image-listview flush transparent no-line">
                 <li>
-                    <a href="{% url 'Chatbot:chathome' %}" class="item">
+                    <a href="/chatbot/" class="item">
                         <img src="{% static 'img/sample/avatar/avatar7.jpg' %}" alt="image" class="image">
                         <div class="in">
                             <div>Sophie Asveld</div>
@@ -303,7 +283,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{% url 'Chatbot:chathome' %}" class="item">
+                    <a href="/chatbot/" class="item">
                         <img src="{% static 'img/sample/avatar/avatar3.jpg' %}" alt="image" class="image">
                         <div class="in">
                             <div>Sebastian Bennett</div>
@@ -312,7 +292,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{% url 'Chatbot:chathome' %}" class="item">
+                    <a href="/chatbot/" class="item">
                         <img src="{% static 'img/sample/avatar/avatar10.jpg' %}" alt="image" class="image">
                         <div class="in">
                             <div>Beth Murphy</div>
@@ -320,7 +300,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{% url 'Chatbot:chathome' %}" class="item">
+                    <a href="/chatbot/" class="item">
                         <img src="{% static 'img/sample/avatar/avatar2.jpg' %}" alt="image" class="image">
                         <div class="in">
                             <div>Amelia Cabal</div>
@@ -328,7 +308,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{% url 'Chatbot:chathome' %}" class="item">
+                    <a href="/chatbot/" class="item">
                         <img src="{% static 'img/sample/avatar/avatar5.jpg' %}" alt="image" class="image">
                         <div class="in">
                             <div>Henry Doe</div>
@@ -358,15 +338,15 @@
 
     <!-- ============== Js Files ==============  -->
     <!-- Bootstrap -->
-    <script src="{% static 'js/lib/bootstrap.min.js' %}"></script>
+    <script src="/static/js/lib/bootstrap.min.js"></script>
     <!-- Ionicons -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <!-- Splide -->
-    <script src="{% static 'js/plugins/splide/splide.min.js' %}"></script>
+    <script src="/static/js/plugins/splide/splide.min.js" ></script>
     <!-- ProgressBar js -->
-    <script src="{% static 'js/plugins/progressbar-js/progressbar.min.js' %}"></script>
+    <script src="/static/js/plugins/progressbar-js/progressbar.min.js"></script>
     <!-- Base Js File -->
-    <script src="{% static 'js/base.js' %}"></script>
+    <script src="/static/js/base.js"></script>
 
     <script>
         // Trigger welcome notification after 5 seconds
