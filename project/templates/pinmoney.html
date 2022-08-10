@@ -52,24 +52,32 @@
 
         <!-- 용돈 제공 -->
 
-       
         <div class="section mt-3 mb-3">
-            <div class="card">
-                <div class="card-body d-flex justify-content-between" style="align-items: center;">
-                    <div style="width: 30%;">
-                        <img src="{% static 'img/enjoy_1.png' %}"  alt="image" style="width: 100%;">
+
+            {% if opponent_name %}
+                
+                <div class="card">
+                    <div class="card-body d-flex justify-content-between" style="align-items: center;">
+                        <div style="width: 30%;">
+                            <img src="{% static 'img/enjoy_1.png' %}"  alt="image" style="width: 100%;">
+                        </div>
+                        <div style="width: 50%;">
+                            <h5 class="card-title mb-0 d-flex align-items-center justify-content-between">
+                                {{opponent_name}}
+                            </h5>
+                            <p style="font-size:large;">[{{opponent_kind}}]{{opponent_name}}님이 연결되어있습니다.</p>
+                        </div>
+                       
+                        <div style="width: 20%;">
+                            <button type="button" class="btn btn-secondary me-1 mb-1" style="font-weight: bolder; color:rgb(147, 147, 147)">용돈 주기</button>
+                        </div>
+                        
                     </div>
-                    <div style="width: 50%;">
-                        <h5 class="card-title mb-0 d-flex align-items-center justify-content-between">
-                            우영우
-                        </h5>
-                    </div>
-                    <div style="width: 20%;">
-                        <button type="button" class="btn btn-secondary me-1 mb-1" style="font-weight: bolder; color:rgb(147, 147, 147)">용돈 주기</button>
-                    </div>
-                    
                 </div>
-            </div>
+
+            {% endif %}
+
+            
             <div class="card">
                 <div class="card-body d-flex justify-content-between" style="align-items: center;">
                     <div style="width: 30%;">
@@ -207,8 +215,9 @@
 
     <!-- 용돈 내역 -->
 
-     <!-- App Bottom Menu -->
-     <div class="appBottomMenu">
+  
+    <!-- App Bottom Menu -->
+    <div class="appBottomMenu">
         
         <!-- <a href="/chatbot/" class="item">
             <div class="col">
@@ -226,140 +235,138 @@
                 <ion-icon name="home-outline"></ion-icon>
             </div>
         </a>
-        <a href="#" class="item" data-bs-toggle="offcanvas">
+        <a href="{% url 'main:mypage' %}"  class="item active" >
             <div class="col">
-               <img src = "{% static 'img/mypage.png'%} " alt="mypage" class="imaged rounded " style="width:50px;">
+              <image src = "{% static 'img/mypage.png'%} " alt="mypage" class="imaged rounded " style="width:50px;">
             </div>
         </a>
     </div>
     <!-- * App Bottom Menu -->
 
-    
     <!-- App Sidebar -->
     <div class="offcanvas offcanvas-start" tabindex="-1" id="sidebarPanel">
         <div class="offcanvas-body">
-            <!-- profile box -->
-            <div class="profileBox">
-                <div class="image-wrapper">
-                    <img src="{% static 'img/sample/avatar/avatar1.jpg' %}" alt="image" class="imaged rounded">
-                </div>
-                <div class="in">
-                    <strong>Julian Gruber</strong>
-                    <div class="text-muted">
-                        <ion-icon name="location"></ion-icon>
-                        California
+        {% if request.session.phoneNumber or user.is_authenticated %}
+            {% if request.session.phoneNumber %} 
+                <!-- profile box -->
+                <div class="profileBox">
+                    <div class="image-wrapper">
+                        <img src="{% static 'img/sample/avatar/avatar1.jpg' %}" alt="image" class="imaged rounded">
                     </div>
+                    <div class="in">
+                        <strong>{{request.session.username}}님  </strong>
+                        <a href="{% url 'user:logout' %}"><strong>로그아웃</strong></a>
+                    </div>
+                    <a href="#" class="close-sidebar-button" data-bs-dismiss="offcanvas">
+                        <ion-icon name="close"></ion-icon>
+                    </a>
                 </div>
-                <a href="#" class="close-sidebar-button" data-bs-dismiss="offcanvas">
-                    <ion-icon name="close"></ion-icon>
-                </a>
-            </div>
+            {% else %}
+                    <!-- profile box -->
+                    <div class="profileBox">
+                        <div class="image-wrapper">
+                            <img src="{% static 'img/sample/avatar/avatar1.jpg' %}" alt="image" class="imaged rounded">
+                        </div>
+                        <div class="in">
+                            <strong>{{user.email}}님</strong>
+                            <a href="/accounts/logout"><strong>소셜 로그아웃</strong></a>
+                        </div>
+                        <a href="#" class="close-sidebar-button" data-bs-dismiss="offcanvas">
+                            <ion-icon name="close"></ion-icon>
+                        </a>
+                    </div>
+            {% endif %}
             <!-- * profile box -->
-
-            <ul class="listview flush transparent no-line image-listview mt-2">
-                <li>
-                    <a href="index.html" class="item">
-                        <div class="icon-box bg-primary">
-                            <ion-icon name="home-outline"></ion-icon>
-                        </div>
-                        <div class="in">
-                            Discover
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="app-components.html" class="item">
-                        <div class="icon-box bg-primary">
-                            <ion-icon name="cube-outline"></ion-icon>
-                        </div>
-                        <div class="in">
-                            Components
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="app-pages.html" class="item">
-                        <div class="icon-box bg-primary">
-                            <ion-icon name="layers-outline"></ion-icon>
-                        </div>
-                        <div class="in">
-                            <div>Pages</div>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="page-chat.html" class="item">
-                        <div class="icon-box bg-primary">
-                            <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
-                        </div>
-                        <div class="in">
-                            <div>Chat</div>
-                            <span class="badge badge-danger">5</span>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <div class="item">
-                        <div class="icon-box bg-primary">
-                            <ion-icon name="moon-outline"></ion-icon>
-                        </div>
-                        <div class="in">
-                            <div>Dark Mode</div>
-                            <div class="form-check form-switch">
-                                <input class="form-check-input dark-mode-switch" type="checkbox" id="darkmodesidebar">
-                                <label class="form-check-label" for="darkmodesidebar"></label>
-                            </div>
-                        </div>
+        {% else %}
+                <!-- profile box -->
+                <div class="profileBox">
+                    <div class="in">
+                        <a href="{% url 'user:login' %}"><strong>로그인</strong></a>
                     </div>
-                </li>
-            </ul>
+                    <a href="#" class="close-sidebar-button" data-bs-dismiss="offcanvas">
+                        <ion-icon name="close"></ion-icon>
+                    </a>
+                </div>
 
-            <div class="listview-title mt-2 mb-1">
-                <span>Friends</span>
-            </div>
-            <ul class="listview image-listview flush transparent no-line">
-                <li>
-                    <a href="page-chat.html" class="item">
-                        <img src="{% static 'img/sample/avatar/avatar7.jpg' %}" alt="image" class="image">
-                        <div class="in">
-                            <div>Sophie Asveld</div>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="page-chat.html" class="item">
-                        <img src="{% static 'img/sample/avatar/avatar3.jpg' %}" alt="image" class="image">
-                        <div class="in">
-                            <div>Sebastian Bennett</div>
-                            <span class="badge badge-danger">6</span>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="page-chat.html" class="item">
-                        <img src="{% static 'img/sample/avatar/avatar10.jpg' %}" alt="image" class="image">
-                        <div class="in">
-                            <div>Beth Murphy</div>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="page-chat.html" class="item">
-                        <img src="{% static 'img/sample/avatar/avatar2.jpg' %}" alt="image" class="image">
-                        <div class="in">
-                            <div>Amelia Cabal</div>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="page-chat.html" class="item">
-                        <img src="{% static 'img/sample/avatar/avatar5.jpg' %}" alt="image" class="image">
-                        <div class="in">
-                            <div>Henry Doe</div>
-                        </div>
-                    </a>
-                </li>
-            </ul>
+        {% endif %}
+        <ul class="listview flush transparent no-line image-listview mt-2">
+            <li>
+                <a href = "{% url 'main:pinmoney' %}" class="item">
+                    <div class="icon-box bg-primary">
+                        <ion-icon name="cube-outline"></ion-icon>
+                    </div>
+                    <div class="in">
+                        용돈주기
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="/" class="item">
+                    <div class="icon-box bg-primary">
+                        <ion-icon name="cube-outline"></ion-icon>
+                    </div>
+                    <div class="in">
+                        <div>미션주기</div>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="/" class="item">
+                    <div class="icon-box bg-primary">
+                        <ion-icon name="cube-outline"></ion-icon>
+                    </div>
+                    <div class="in">
+                        <div>증여관리</div>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href = "{% url 'main:enjoy' %}" class="item">
+                    <div class="icon-box bg-primary">
+                        <ion-icon name="cube-outline"></ion-icon>
+                    </div>
+                    <div class="in">
+                        <div>오락마당</div>
+                    </div>
+                </a>
+            </li>
+        </ul>
+
+        <div class="listview-title mt-2 mb-1">
+            <span>Family</span>
+        </div>
+       
+        <ul class="listview image-listview flush transparent no-line">
+            {% if opponent_name %}
+            <li>
+                
+                <a href="/" class="item">
+                    <img src="{% static 'img/sample/avatar/avatar7.jpg' %}" alt="image" class="image">
+                    <div class="in">
+                        <div>{{opponent_name}}님</div>
+                    </div>
+                </a>
+            </li>
+            {% endif %}
+            <li>
+                <div class="item">
+                    <img src="{% static 'img/sample/avatar/avatar2.jpg' %}" alt="image" class="image">
+                    <div class="in">
+                        <div>우영우</div>
+                    </div>
+                </div>
+
+                
+            </li>
+            <li>
+                <div class="item">
+                    <img src="{% static 'img/sample/avatar/avatar2.jpg' %}" alt="image" class="image">
+                    <div class="in">
+                        <div>차은우</div>
+                    </div>
+                </div>
+            </li>
+        </ul>
         </div>
         <!-- sidebar buttons -->
         <div class="sidebar-buttons">
@@ -382,19 +389,28 @@
 
     <!-- ============== Js Files ==============  -->
     <!-- Bootstrap -->
-    <script src="{% static 'js/lib/bootstrap.min.js'%} "></script>
+    <script src="/static/js/lib/bootstrap.min.js"></script>
     <!-- Ionicons -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <!-- Splide -->
-    <script src="{% static 'js/plugins/splide/splide.min.js'%} "></script>
+    <script src="/static/js/plugins/splide/splide.min.js" ></script>
     <!-- ProgressBar js -->
-    <script src="{% static 'js/plugins/progressbar-js/progressbar.min.js'%} "></script>
+    <script src="/static/js/plugins/progressbar-js/progressbar.min.js"></script>
     <!-- Base Js File -->
-    <script src="{% static 'js/base.js'%} "></script>
+    <script src="/static/js/base.js"></script>
+
+    <script>
+        // Trigger welcome notification after 5 seconds
+        setTimeout(() => {
+            notification('notification-welcome', 5000);
+        }, 2000);
+    </script>
 
 </body>
 
 </html>
+
+
 {% else %}
 
   <script>
