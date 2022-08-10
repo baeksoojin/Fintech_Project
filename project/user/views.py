@@ -100,8 +100,8 @@ def Connect(request):
             print(grandch.phoneNumber)
             print(request.session.get('phoneNumber'))
 
-            if grandch.connect=='null':
-                grandch.connect = json.dumps([request.session.get('phoneNumber')])
+            if not grandch.connect:
+                grandch.connect = json.dumps([request.session.get('phoneNumber'),True])
                 grandch.save()
             else:
                 jsonDecoder= json.decoder.JSONDecoder()
@@ -121,7 +121,7 @@ def Connect(request):
                 print("here")
                 print([request.session.get('phoneNumber')])
                 print(type(json.dumps([request.session.get('phoneNumber')])))
-                grandpa.connect = json.dumps([request.session.get('phoneNumber')])
+                grandpa.connect = json.dumps([[request.session.get('phoneNumber'),False]])
                 grandpa.save()
             else:
                 jsonDecoder= json.decoder.JSONDecoder()
@@ -142,11 +142,20 @@ def Check(request):
 
     if request.method == "POST":
         opponent_nickname = request.POST["opponent"]
-        print(opponent_nickname)
+        mykind = request.POST["kind"] # True면 조부모 False면 손주
+        print(opponent_nickname, mykind)
         opponent = user.objects.get(username=opponent_nickname)
         opponent.family = json.dumps([str(member.phoneNumber)])
         member.family = json.dumps([str(opponent.phoneNumber)])
         member.connect = json.dumps([])
+
+        if mykind == True:
+            member.kind = mykind
+            opponent.kind = False
+        else:
+            member.kind = mykind
+            opponent.kind = True
+
         member.save()
         opponent.save()
         res_data['notice'] = "연결이 완료 되었습니다"
@@ -160,9 +169,11 @@ def Check(request):
                 res_data['nan'] ="연결요청이 없습니다"
                 return render(request,"user/mypage.html",res_data)
             else:
-                print("현재 connection 요쳥 : ",connection_list[0])
-                member2 = user.objects.get(phoneNumber=connection_list[0])
+                print("현재 connection 요쳥 : ",connection_list[0][0])
+                member2 = user.objects.get(phoneNumber=connection_list[0][0])
                 res_data['name'] = member2.username
+                res_data['kind'] = connection_list[0][1]
+                print("kind :", connection_list[0][1])
                 return render(request,"user/check.html",res_data)
         else:
             res_data['nan'] ="연결요청이 없습니다"

@@ -10,6 +10,7 @@ class User(AbstractUser):
     phoneNumber = PhoneNumberField(unique = True, null = True, blank = False)
     connect = models.TextField(null=True)
     family = models.TextField(null=True)
+    kind = models.BooleanField(null=True)
     
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = []

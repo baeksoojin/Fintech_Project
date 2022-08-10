@@ -8,6 +8,7 @@
        <form action="{% url 'user:check'%}" method="POST">
         {% csrf_token %}
             <input name="opponent" value="{{name}}" hidden>
+            <input name="kind" value ="{{kind}}" hidden>
             <input type="submit" >수락하기</a>
        </form>
    </div>
