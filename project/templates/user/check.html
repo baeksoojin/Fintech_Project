@@ -1,4 +1,19 @@
 
-{{name}}님의 가족연결 요청이있습니다.
+
+<div>
+    <div>
+        {{name}}님의 가족연결 요청이있습니다.
+    </div>
+   <div>
+       <form action="{% url 'user:check'%}" method="POST">
+        {% csrf_token %}
+            <input name="opponent" value="{{name}}" hidden>
+            <input type="submit" >수락하기</a>
+       </form>
+   </div>
+</div>
+
+
+<p></p>
 
 {{nan}}

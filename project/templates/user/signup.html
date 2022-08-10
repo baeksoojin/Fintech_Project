@@ -29,13 +29,13 @@
     <!-- App Header -->
     <div class="appHeader no-border transparent position-absolute">
         <div class="left">
-            <a href="#" class="headerButton goBack">
+            <a href="{% url 'user:login' %}" class="headerButton goBack">
                 <ion-icon name="chevron-back-outline"></ion-icon>
             </a>
         </div>
         <div class="pageTitle"></div>
         <div class="right">
-            <a href="page-login.html" class="headerButton">
+            <a href="{% url 'user:login' %}" class="headerButton">
                 Login
             </a>
         </div>
@@ -55,7 +55,7 @@
         <form name = "signup_form" style = "display: block;" action="{% url 'user:signup' %}" method = "POST" >
             {% csrf_token %}
             <div class="form-group">
-                <label for="name" style="font-size : 30px">닉네임</label>
+                <label for="name" style="font-size : 25px">닉네임</label>
                 <input class="form-control" type = "text" name = "username" >
                 <p id="nicknamewordHelpInline" class="text-muted">
                     중복된 닉네임 안 됩니다.
@@ -63,7 +63,7 @@
             </div>
             <br>
             <div class="form-group">
-                <label for="phoneNumber" style="font-size : 30px">핸드폰 번호</label>
+                <label for="phoneNumber" style="font-size : 25px">핸드폰 번호</label>
                 <input class="form-control" type = "text" name = "phoneNumber"  placeholder="+82">
                 <p id="phoneNumberHelpInline" class="text-muted">
                     중복된 핸드폰 번호는 안 됩니다.
@@ -71,7 +71,7 @@
             </div>
             <br>
             <div class="form-group">
-                <label for="PW" style="font-size : 30px">비밀번호</label>
+                <label for="PW" style="font-size : 25px">비밀번호</label>
                 <input class="form-control" type = "password" name = "pw"  >
                 <p id="passwordHelpInline" class="text-muted">
                     6-10자만 유효합니다
@@ -79,7 +79,7 @@
             </div>
             <br>
             <div class="form-group">
-                <label for="PW2" style="font-size : 30px">비밀번호 재확인</label>
+                <label for="PW2" style="font-size : 25px">비밀번호 재확인</label>
                 <input class="form-control" type = "password" name = "pw2" >
                 <p id="passwordHelpInline" class="text-muted">
                     위의 비밀번호와 일치해야합니다.

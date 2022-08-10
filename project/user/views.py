@@ -130,8 +130,6 @@ def Connect(request):
                 grandpa.connect =  json.dumps(connection_lists)
                 # grandpa.save()
 
-
-        
         return redirect('/')
     else:
         return render(request,"user/connect.html")
@@ -139,16 +137,33 @@ def Connect(request):
 
 def Check(request):
     user = User
-    member = user.objects.get(phoneNumber=request.session.get('phoneNumber'))
-    if member.connect:
-        jsonDecoder= json.decoder.JSONDecoder()
-        connection_list = jsonDecoder.decode(member.connect)
-        print("현재 connection 요쳥 : ",connection_list[0])
-        member2 = user.objects.get(phoneNumber=connection_list[0])
-        res_data={}
-        res_data['name'] = member2.username
-        return render(request,"user/check.html",res_data)
-    else:
-        res_data['nan'] ="연겨요청이 없습니다"
-        return render(request,"user/check.html",res_data)
+    member = user.objects.get(phoneNumber=request.session.get('phoneNumber'))#본인
+    res_data={}
 
+    if request.method == "POST":
+        opponent_nickname = request.POST["opponent"]
+        print(opponent_nickname)
+        opponent = user.objects.get(username=opponent_nickname)
+        opponent.family = json.dumps([str(member.phoneNumber)])
+        member.family = json.dumps([str(opponent.phoneNumber)])
+        member.connect = json.dumps([])
+        member.save()
+        opponent.save()
+        res_data['notice'] = "연결이 완료 되었습니다"
+        return render(request,"user/mypage.html",res_data)
+
+    else:
+        if member.connect:
+            jsonDecoder= json.decoder.JSONDecoder()
+            connection_list = jsonDecoder.decode(member.connect)
+            if len(connection_list)==0:
+                res_data['nan'] ="연결요청이 없습니다"
+                return render(request,"user/mypage.html",res_data)
+            else:
+                print("현재 connection 요쳥 : ",connection_list[0])
+                member2 = user.objects.get(phoneNumber=connection_list[0])
+                res_data['name'] = member2.username
+                return render(request,"user/check.html",res_data)
+        else:
+            res_data['nan'] ="연결요청이 없습니다"
+            return render(request,"user/mypage.html",res_data)

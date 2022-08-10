@@ -1,0 +1,48 @@
+{% load static %}
+{% load socialaccount %}
+{% if request.session.phoneNumber or user.is_authenticated %}
+{% if request.session.phoneNumber %} 
+        {{request.session.username}}님
+        <a href="{% url 'user:logout' %}">로그아웃</a></br>
+    {% else %}
+        {{user.email}}
+        <a href="/accounts/logout">소셜 로그아웃</a></br>
+    {% endif %}
+
+<h1> mypage </h1>
+
+<ul>
+
+    <li>충전하기</li>
+    <li>
+        <div>
+        <p>가족연결하기</p>
+        <a href="{% url 'user:connect' %}"> 가족연결하기 </a><br>
+        <a href="{% url 'user:check' %}">요청 확인하기</a></br>
+        </div>
+    </li>
+</ul>
+  
+{% else %}
+    <script>
+        alert("로그인이 필요한 페이지입니다");
+        document.location.href = "{% url 'user:login' %}"
+    </script>
+
+{% endif %}
+
+{% if notice %}
+<script>
+    const notice = "{{notice}}";
+    alert(notice);
+    document.location.href = "{% url 'main:mypage' %}"
+</script>
+{% endif %}
+
+{% if nan %}
+<script>
+    const notice = "{{nan}}";
+    alert(notice);
+    document.location.href = "{% url 'main:mypage' %}"
+</script>
+{% endif %}

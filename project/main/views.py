@@ -12,3 +12,6 @@ def pinmoney(request):
 
 def mylogin(request):
     return render(request,'login_index.html')
+
+def mypage(request):
+    return render(request,'user/mypage.html')

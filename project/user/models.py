@@ -9,6 +9,7 @@ class User(AbstractUser):
     email = models.EmailField(max_length=50, null=True)
     phoneNumber = PhoneNumberField(unique = True, null = True, blank = False)
     connect = models.TextField(null=True)
+    family = models.TextField(null=True)
     
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = []
