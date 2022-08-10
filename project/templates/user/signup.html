@@ -1,48 +1,150 @@
-<!-- ======= Breadcrumbs Section ======= -->
-<section class="breadcrumbs">
-    <div class="container">
-        <p>Singup Page</p>
-    </div>
-</section><!-- End Breadcrumbs Section -->
+{% load static %}
+{% load socialaccount %}
+<!doctype html>
+<html lang="en">
 
-<section class="inner-page">
-    <div class="container">
-    <form name = "signup_form" style = "display: block;" action="{% url 'user:signup' %}" method = "POST" >
-        {% csrf_token %}
-        <div class="form-group">
-            <label for="name">닉네임</label>
-            <input class="form-control" type = "text" name = "username" >
-            <small id="nicknamewordHelpInline" class="text-muted">
-                중복된 닉네임 안 됩니다.
-            </small>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#000000">
+    <title>내리사랑</title>
+    <meta name="description" content="Mobilekit HTML Mobile UI Kit">
+    <meta name="keywords" content="bootstrap 5, mobile template, cordova, phonegap, mobile, html" />
+    <link rel="icon" type="image/png" href="{% static 'img/mark.png'%} " sizes="32x32">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'img/icon/192x192.png'%} ">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body class="bg-white">
+
+    <!-- loader -->
+        <div id="loader">
+            <div class="spinner-border text-primary" role="status"></div>
         </div>
-        <br>
-        <div class="form-group">
-            <label for="phoneNumber">핸드폰 번호</label>
-            <input class="form-control" type = "text" name = "phoneNumber"  >
-            <small id="phoneNumberHelpInline" class="text-muted">
-                중복된 핸드폰 번호는 안 됩니다.
-            </small>
+    <!-- * loader -->
+
+    <!-- App Header -->
+    <div class="appHeader no-border transparent position-absolute">
+        <div class="left">
+            <a href="#" class="headerButton goBack">
+                <ion-icon name="chevron-back-outline"></ion-icon>
+            </a>
         </div>
-        <br>
-        <div class="form-group">
-            <label for="PW">비밀번호</label>
-            <input class="form-control" type = "password" name = "pw"  >
-            <small id="passwordHelpInline" class="text-muted">
-                Must be 6-10 characters long.(6-10자만 유효합니다.)
-            </small>
+        <div class="pageTitle"></div>
+        <div class="right">
+            <a href="page-login.html" class="headerButton">
+                Login
+            </a>
         </div>
-        <br>
-        <div class="form-group">
-            <label for="PW2">비밀번호 재확인</label>
-            <input class="form-control" type = "password" name = "pw2" >
-            <small id="passwordHelpInline" class="text-muted">
-                위의 비밀번호와 일치해야합니다.
-            </small>
+    </div>
+    <!-- * App Header -->
+
+    <!-- App Capsule -->
+    <div id="appCapsule">
+
+        <div class="login-form">
+            <div class="section">
+                <h1>회원가입</h1>
+            </div>
+
+    <section class="inner-page" style="padding-top: 10%; padding-bottom: 10%;">
+        <div class="container">
+        <form name = "signup_form" style = "display: block;" action="{% url 'user:signup' %}" method = "POST" >
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="name" style="font-size : 30px">닉네임</label>
+                <input class="form-control" type = "text" name = "username" >
+                <p id="nicknamewordHelpInline" class="text-muted">
+                    중복된 닉네임 안 됩니다.
+                </p>
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="phoneNumber" style="font-size : 30px">핸드폰 번호</label>
+                <input class="form-control" type = "text" name = "phoneNumber"  placeholder="+82">
+                <p id="phoneNumberHelpInline" class="text-muted">
+                    중복된 핸드폰 번호는 안 됩니다.
+                </p>
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="PW" style="font-size : 30px">비밀번호</label>
+                <input class="form-control" type = "password" name = "pw"  >
+                <p id="passwordHelpInline" class="text-muted">
+                    6-10자만 유효합니다
+                </p>
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="PW2" style="font-size : 30px">비밀번호 재확인</label>
+                <input class="form-control" type = "password" name = "pw2" >
+                <p id="passwordHelpInline" class="text-muted">
+                    위의 비밀번호와 일치해야합니다.
+                </p>
+            </div>
+            <br>
+            <div class = "text-center"><input class="btn btn-primary btn-block btn-lg" type = "submit" value ="회원가입"></div>
+        </form>
+
         </div>
-        <br>
-        <div class = "text-center"><input class="btn btn-outline-success" type = "submit" value ="signup"></div>
-    </form>
+    </section>
+    </div>
+
+
 
     </div>
-</section>
+  <!-- App Bottom Menu -->
+  <div class="appBottomMenu">
+        
+    <!-- <a href="/chatbot/" class="item">
+        <div class="col">
+            <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+            <span class="badge badge-danger">5</span>
+        </div>
+    </a> -->
+    <a href="app-pages.html" class="item">
+        <div class="col">
+            <ion-icon name="layers-outline"></ion-icon>
+        </div>
+    </a>
+    <a href="/" class="item active">
+        <div class="col">
+            <ion-icon name="home-outline"></ion-icon>
+        </div>
+    </a>
+    <a href="#" class="item" data-bs-toggle="offcanvas">
+        <div class="col">
+           <img src = "{% static 'img/mypage.png'%} " alt="mypage" class="imaged rounded " style="width:50px;">
+        </div>
+    </a>
+</div>
+
+    <!-- * App Bottom Menu -->
+    <!-- * App Capsule -->
+
+    <!-- ============== Js Files ==============  -->
+    <!-- Bootstrap -->
+    <script src="{% static 'js/lib/bootstrap.min.js'%} "></script>
+    <!-- Ionicons -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <!-- Splide -->
+    <script src="{% static 'js/plugins/splide/splide.min.js'%} "></script>
+    <!-- ProgressBar js -->
+    <script src="{% static 'js/plugins/progressbar-js/progressbar.min.js'%} "></script>
+    <!-- Base Js File -->
+    <script src="{% static 'js/base.js'%} "></script>
+
+    </body>
+
+</html>
+
+{% if error %}
+<script>
+const error = "{{error}}";
+alert(error);
+document.location.href = "{% url 'user:login' %}"
+</script>
+{% endif %}

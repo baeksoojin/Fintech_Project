@@ -1,4 +1,5 @@
 {% load static %}
+{% load socialaccount %}
 <!doctype html>
 <html lang="en">
 
@@ -207,35 +208,51 @@
     <!-- App Sidebar -->
     <div class="offcanvas offcanvas-start" tabindex="-1" id="sidebarPanel">
         <div class="offcanvas-body">
-            <!-- profile box -->
-            <div class="profileBox">
-                <div class="image-wrapper">
-                    <img src="{% static 'img/sample/avatar/avatar1.jpg' %}" alt="image" class="imaged rounded">
-                </div>
-                <div class="in">
-                    <strong>Julian Gruber</strong>
-                    <div class="text-muted">
-                        <ion-icon name="location"></ion-icon>
-                        California
+        {% if request.session.phoneNumber or user.is_authenticated %}
+            {% if request.session.phoneNumber %} 
+                <!-- profile box -->
+                <div class="profileBox">
+                    <div class="image-wrapper">
+                        <img src="{% static 'img/sample/avatar/avatar1.jpg' %}" alt="image" class="imaged rounded">
                     </div>
+                    <div class="in">
+                        <strong>{{request.session.username}}님  </strong>
+                        <a href="{% url 'user:logout' %}"><strong>로그아웃</strong></a>
+                    </div>
+                    <a href="#" class="close-sidebar-button" data-bs-dismiss="offcanvas">
+                        <ion-icon name="close"></ion-icon>
+                    </a>
                 </div>
-                <a href="#" class="close-sidebar-button" data-bs-dismiss="offcanvas">
-                    <ion-icon name="close"></ion-icon>
-                </a>
-            </div>
-            <!-- * profile box -->
-
-            <ul class="listview flush transparent no-line image-listview mt-2">
-                <li>
-                    <a href="index.html" class="item">
-                        <div class="icon-box bg-primary">
-                            <ion-icon name="home-outline"></ion-icon>
+            {% else %}
+                    <!-- profile box -->
+                    <div class="profileBox">
+                        <div class="image-wrapper">
+                            <img src="{% static 'img/sample/avatar/avatar1.jpg' %}" alt="image" class="imaged rounded">
                         </div>
                         <div class="in">
-                            Discover
+                            <strong>{{user.email}}님</strong>
+                            <a href="/accounts/logout"><strong>소셜 로그아웃</strong></a>
                         </div>
+                        <a href="#" class="close-sidebar-button" data-bs-dismiss="offcanvas">
+                            <ion-icon name="close"></ion-icon>
+                        </a>
+                    </div>
+            {% endif %}
+            <!-- * profile box -->
+        {% else %}
+                <!-- profile box -->
+                <div class="profileBox">
+                    <div class="in">
+                        <a href="{% url 'user:login' %}"><strong>로그인</strong></a>
+                    </div>
+                    <a href="#" class="close-sidebar-button" data-bs-dismiss="offcanvas">
+                        <ion-icon name="close"></ion-icon>
                     </a>
-                </li>
+                </div>
+
+        {% endif %}
+
+            <ul class="listview flush transparent no-line image-listview mt-2">
                 <li>
                     <a href="app-components.html" class="item">
                         <div class="icon-box bg-primary">
@@ -268,19 +285,7 @@
                     </a>
                 </li>
                 <li>
-                    <div class="item">
-                        <div class="icon-box bg-primary">
-                            <ion-icon name="moon-outline"></ion-icon>
-                        </div>
-                        <div class="in">
-                            <div>Dark Mode</div>
-                            <div class="form-check form-switch">
-                                <input class="form-check-input dark-mode-switch" type="checkbox" id="darkmodesidebar">
-                                <label class="form-check-label" for="darkmodesidebar"></label>
-                            </div>
-                        </div>
-                    </div>
-                </li>
+                
             </ul>
 
             <div class="listview-title mt-2 mb-1">
