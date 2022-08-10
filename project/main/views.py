@@ -6,7 +6,9 @@ import json
 
 def get_family(request):
     user = User
+    print(request.session.get('phoneNumber'))
     member = user.objects.get(phoneNumber=request.session.get('phoneNumber'))#본인
+    print(member)
     res_data={}
 
     jsonDecoder= json.decoder.JSONDecoder()
@@ -15,6 +17,7 @@ def get_family(request):
 
     opponent = user.objects.get(phoneNumber=family_list[0])#상대방
     opponent_name = opponent.username
+    print(opponent_name)
     if opponent.kind==False:
         opponent_kind = "손주"
     else:
@@ -27,21 +30,28 @@ def get_family(request):
     
 def home(request):
 
-    res_data = get_family(request)
+    try:
+        res_data = get_family(request)
+        return render(request,'index.html',res_data)
+    except:
+        return render(request,'index.html')
 
-    return render(request,'index.html',res_data)
+    
 
 def enjoy(request):
-
-    res_data = get_family(request)
-
-    return render(request,'enjoy.html')
+    try:
+        res_data = get_family(request)
+        return render(request,'enjoy.html',res_data)
+    except:
+        return render(request,'enjoy.html')
 
 def pinmoney(request):
 
-    res_data = get_family(request)
-
-    return render(request,'pinmoney.html', res_data)
+    try:
+        res_data = get_family(request)
+        return render(request,'pinmoney.html',res_data)
+    except:
+        return render(request,'pinmoney.html')
 
 def mylogin(request):
 
@@ -49,6 +59,8 @@ def mylogin(request):
 
 def mypage(request):
 
-    res_data = get_family(request)
-
-    return render(request,'user/mypage.html',res_data)
+    try:
+        res_data = get_family(request)
+        return render(request,'user/mypage.html',res_data)
+    except:
+        return render(request,'user/mypage.html')
