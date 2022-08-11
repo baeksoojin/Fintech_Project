@@ -96,7 +96,7 @@
                         <button type="button" class="btn btn-secondary me-1 mb-1" style="font-weight: bolder; color:rgb(147, 147, 147)">용돈 주기</button>
                     </div>
                     
-                </div>
+            </div>
             <div class="card">
                 <div class="card-body d-flex justify-content-between" style="align-items: center;">
                     <div style="width: 30%;">
@@ -115,49 +115,117 @@
                 
             </div>
         </div>
+    </div>
 
         
 
-        <!-- 용돈 내역 -->
+       
 
-        <div class="section mt-3 mb-3">
+    <!--정기용돈관리-->
+
+    <div class="section mt-3 mb-3">
+        <div class="card-body d-flex justify-content-between">
+        
+            <div style="width: 80%;"><h1> 정기용돈 관리</h1></div>
+            
+        </div>
+        <h3></h3>
+    </div>
+
+    <div class="section mt-3 mb-3" >
+
+        <div class="card">
+            <div class="card-body d-flex justify-content-between" style="align-items: center;">
+                <div style="width: 30%;">
+                    <img src="{% static 'img/enjoy_2.png' %}"  alt="image" style="width: 100%;">
+                </div>
+                <div style="width: 50%;">
+                    <h5 class="card-title mb-0 d-flex align-items-center justify-content-between">
+                        차은우
+                    </h5>
+                    <h5 class="card-title mb-0 d-flex align-items-center justify-content-between">
+                        생활비
+                    </h5>
+                </div>
+                <div style="width: 20%;">
+                    <button type="button" class="btn btn-secondary me-1 mb-1" style="font-weight: bolder; color:rgb(147, 147, 147)">매월 5일</button>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body d-flex justify-content-between" style="align-items: center;">
+                <div style="width: 30%;">
+                    <img src="{% static 'img/enjoy_2.png' %}"  alt="image" style="width: 100%;">
+                </div>
+                <div style="width: 50%;">
+                    <h5 class="card-title mb-0 d-flex align-items-center justify-content-between">
+                        우영우
+                    </h5>
+                    <h5 class="card-title mb-0 d-flex align-items-center justify-content-between">
+                        10년 증여 플랜
+                    </h5>
+                </div>
+                <div style="width: 20%;">
+                    <button type="button" class="btn btn-secondary me-1 mb-1" style="font-weight: bolder; color:rgb(147, 147, 147)">매월 10일</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group boxed" style="margin-top: 2%;">
+            <button type="submit" class="btn btn-primary btn-block btn-lg">정기용돈 추가하기</button>
+        </div>
+        <div class="card-body d-flex justify-content-between" >
+            <p style="width: 95%; font-size: 20px;">정기 용돈으로 미리 증여세 관리하기 </p>
+            <div style="width: 5%;"><p style="font-size: 20px;">></p></div>
+        </div>
+
+
+    </div>
+
+     <!-- 최근 내가 준 용돈 내역 -->
+
+       <div class="section mt-3 mb-3">
             <div class="card-body d-flex justify-content-between">
             
-                <div style="width: 80%;"><h1>최근 내가 준 <span style="color : #F77E21">용돈내역</span></h1></div>
+                <div style="width: 80%;"><h1>최근 내가 준 용돈내역</span></h1></div>
                 <div style="width: 20%;"><p style="font-size: 20px;">더보기</p></div>
             </div>
             <h3></h3>
-        </div>
+    
 
-        <div class="carousel-multiple splide">
-            <div class="splide__track">
-                <ul class="splide__list">
-                    <li class="splide__slide" >
-                        <div class="card" >
-                            <div class="card-body d-flex justify-content-between" style="align-items: center;">
-                                <div style="width: 50%;">
-                                    <img src="{% static 'img/enjoy15.png' %}"  alt="image" style="width: 100%; padding: 20%;">
-                                </div>
-                                <div style="width: 50%;">
-                                    <h3 class="card-title mb-0 d-flex align-items-center justify-content-between">
-                                        우영우
-                                    </h3>
-                                    <p style="font-size: 20px; color: gray;">100,000원을 보냈어요</p>
+            <div class="carousel-multiple splide" style="margin-bottom: 10%;">
+                <div class="splide__track">
+                    <ul class="splide__list">
+                        <li class="splide__slide" >
+                            <div class="card" >
+                                <div class="card-body d-flex justify-content-between" style="align-items: center;">
+                                    <div style="width: 50%;">
+                                        <img src="{% static 'img/enjoy15.png' %}"  alt="image" style="width: 100%; padding: 20%;">
+                                    </div>
+                                    <div style="width: 50%;">
+                                        <h3 class="card-title mb-0 d-flex align-items-center justify-content-between">
+                                            우영우
+                                        </h3>
+                                        <p style="font-size: 20px; color: gray;">100,000원을 보냈어요</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </li>
+                        </li>
+                        
+                    </ul>
                     
-                </ul>
-                
+                </div>
             </div>
         </div>
+        
+        
 
 
-        <div class="section mt-3 mb-3">
+    <!--미션--> 
+        <!-- <div class="section mt-3 mb-3">
             <div class="card-body d-flex justify-content-between">
             
-                <div style="width: 80%;"><h1>정기 <span style="color : #F77E21">용돈미션</span> 관리</h1></div>
+                <div style="width: 80%;"><h1>정기 용돈미션</span> 관리</h1></div>
                 
             </div>
             <div class="card-body d-flex justify-content-between" >
@@ -169,7 +237,6 @@
 
         <div class="section full mt-3 mb-3">
 
-            <!-- carousel multiple -->
             <div class="carousel-multiple splide">
                 <div class="splide__track">
                     <ul class="splide__list">
@@ -183,7 +250,6 @@
                     </ul>
                 </div>
             </div>
-            <!-- * carousel multiple -->
 
         </div>
 
@@ -193,7 +259,7 @@
         <div class="section mt-3 mb-3">
             <div class="card-body d-flex justify-content-between">
             
-                <div style="width: 80%;"><h1>최근 완료된 <span style="color : #F77E21">미션내역</span></h1></div>
+                <div style="width: 80%;"><h1>최근 완료된 미션내역</span></h1></div>
                 <div style="width: 20%;"><p style="font-size: 20px;">더보기</p></div>
             </div>
             <h3></h3>
@@ -215,9 +281,9 @@
                 </div>
                 
             </div>
-        </div>
+        </div> -->
 
-    <!-- 용돈 내역 -->
+    <!-- 미션 내역 -->
 
   
     <!-- App Bottom Menu -->
