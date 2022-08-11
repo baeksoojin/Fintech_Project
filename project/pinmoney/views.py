@@ -1,7 +1,7 @@
 from django.dispatch import receiver
 from django.shortcuts import redirect, render
 from user.models import User
-from pinmoney.models import Pinmoney
+from pinmoney.models import Pinmoney, Regular
 import json
 from datetime import datetime
 
@@ -44,9 +44,6 @@ def give(request):
 
         res_data['username'] = username
         
-        opponent = user.objects.get(username=request.session.get('username'))#상대방
-
-
         pinmoney = Pinmoney
         if pinmoney.objects.filter(username = member.id).exists():
             print("member의 transaction이 존재합니다")
@@ -118,3 +115,61 @@ def success(request):
     else:
         print("here")
         return render(request,'pinmoney/success.html')
+
+########### 정기적금관련 ###########
+
+def regular(request):
+
+    res_data = get_family(request)
+    user = User
+    member = user.objects.get(phoneNumber=request.session.get('phoneNumber'))#본인
+
+    regular = Regular
+
+    try:
+        if request.method == "POST":
+            print("here")
+            try:
+                receiver = request.POST['receiver']
+                unit = request.POST['unit']
+                date = request.POST['date']
+                type = request.POST['type']
+                amount = request.POST['amount']
+                go = request.POST['go']
+                print(go)
+
+                regular(username=member, unit=unit, date=date, type=type, amount=amount, receiver= receiver).save()
+                if regular.objects.filter(username = member.id).exists():
+                    print("member의 정기적금 등록 transaction이 존재합니다")
+                    transaction = regular.objects.filter(username = member.id)
+                    res_data['transaction'] = transaction
+                return render(request,'pinmoney/regular_list.html',res_data)
+
+            except:
+                back = request.POST['back']
+                print(back)
+                
+                return render(request,'pinmoney.html',res_data)
+        else:
+            res_data = get_family(request)
+            return render(request,'pinmoney/regular.html',res_data)
+
+    except:
+        res_data = get_family(request)
+        return render(request,'pinmoney/regular.html',res_data)
+
+def Regular_list(request):
+    user = User
+    member = user.objects.get(phoneNumber=request.session.get('phoneNumber'))#본인
+
+    if request.method=="POST":
+        res_data={}
+        regular = Regular
+        transaction = regular.objects.filter(username = member.id)
+        print(transaction)
+        res_data['transaction'] = transaction
+
+        return render(request,'pinmoney/regular_list.html',res_data)
+    else:
+        res_data = get_family(request)
+        return render(request,'pinmoney.html',res_data)

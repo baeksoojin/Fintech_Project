@@ -1,0 +1,112 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#000000">
+    <title>내리사랑</title>
+    <meta name="description" content="Mobilekit HTML Mobile UI Kit">
+    <meta name="keywords" content="bootstrap 5, mobile template, cordova, phonegap, mobile, html" />
+    <link rel="icon" type="image/png" href="{% static 'img/mark.png'%} " sizes="32x32">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'img/icon/192x192.png'%} ">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+
+    <div style="text-align: center; padding:20%;">
+
+
+        <div class="header-large-title">
+            <h1 class="title">정기용돈 추가</h1>
+            <h4 class="subtitle">가족에게 정기적인 용돈을 주고싶으신가요? 
+                <p>아래의 폼을 입력해주세요</p></h4>
+        </div>
+
+
+        <!-- 용돈 제공 -->
+
+        <div class="section mt-3 mb-3" style="border:0.5px solid ;border-radius: 30px;">
+
+            <form class="form-group boxed" action="{% url 'pinmoney:regular' %}" method = "POST" style="margin:5%;">
+                {% csrf_token %}
+                <div style="margin: 3%;">
+                    <label style="font-size: 25px;">
+
+                    <select name="receiver">
+                        {% if opponent_name %}
+                        <option>
+                            {{opponent_name}}
+                        </option>
+                        {% endif %}
+                        <option>
+                            우영우
+                        </option>
+                        <option>
+                            차은우
+                        </option>
+                    </select>
+                    에게
+                    </label>
+                </div>
+                <div style="margin: 3%;">
+                    
+                    <label style="font-size: 25px; width: 70% ;"><input name="type" style="width: 50%;">목적으로</label>
+                    
+                </div>
+
+                <div style="margin: 3%;">
+                    <label style="font-size: 25px; width:40%;">
+
+                        <select name="unit">
+                            <option>
+                                매월
+                            </option>
+                            <option>
+                                매주
+                            </option>
+                            <option>
+                                매일
+                            </option>
+                        </select>에게
+                    </label>
+                    <label style="font-size: 25px;width:40%;"><input name="date" style="width: 30%;">일마다</label>
+                    
+                </div>
+
+                <div style="margin: 3%;">
+                    
+                    <label style="font-size: 25px; width: 70% ;"><input name="amount" style="width: 50%;">원 보내기</label>
+                    
+                </div>
+                
+                <div class="form-group boxed">
+                    <button type="submit" name="go" value="go" class="btn btn-primary btn-block btn-lg" style="background:whitesmoke; width: 40%;">확인</button>
+                    <button type="submit" name="back" value="back"class="btn btn-text-primary shadowed me-1 mb-1 btn-block btn-lg" style="background:whitesmoke; width: 40%; ">취소</button>
+                </div>
+
+            </form>
+
+    </div>
+
+
+    <!-- Bootstrap -->
+    <script src="{% static 'js/lib/bootstrap.min.js'%} "></script>
+    <!-- Ionicons -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <!-- Splide -->
+    <script src="{% static 'js/plugins/splide/splide.min.js'%} "></script>
+    <!-- ProgressBar js -->
+    <script src="{% static 'js/plugins/progressbar-js/progressbar.min.js'%} "></script>
+    <!-- Base Js File -->
+    <script src="{% static 'js/base.js'%} "></script>
+
+    </body>
+
+</html>
+
