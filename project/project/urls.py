@@ -24,6 +24,7 @@ urlpatterns = [
     path('accounts/',include('allauth.urls')),
     path('',include('main.urls',namespace = "main")),
     path("chatbot/",include("Chatbot.urls",namespace="Chatbot")),
+    path("pinmoney/",include("pinmoney.urls",namespace="pinmoney")),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
