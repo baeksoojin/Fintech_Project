@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from user.models import User
 import json
+from mission.models import Mission
 
 # Create your views here.
 
@@ -64,3 +65,15 @@ def mypage(request):
         return render(request,'user/mypage.html',res_data)
     except:
         return render(request,'user/mypage.html')
+
+def mission(request):
+
+    try:
+        res_data = get_family(request)
+        res_data = get_family(request)
+        missions = Mission
+        mission_list = missions.objects.all()
+        res_data['mission_list'] = mission_list
+        return render(request,'mission.html',res_data)
+    except:
+        return render(request,'mission.html')
