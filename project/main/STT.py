@@ -27,20 +27,29 @@ print("현재경로======> ",os.getcwd(),"\n")
 os.chdir("../Downloads")
 print("현재경로======> ",os.getcwd(),"\n")
 
+def get_text(title):
 
-client_id = env("client_id")
-client_secret =  env("client_secret")
-lang = "Kor" # 언어 코드 ( Kor, Jpn, Eng, Chn )
-url = "https://naveropenapi.apigw.ntruss.com/recog/v1/stt?lang=" + lang
-data = open('audio.ogg', 'rb')
-headers = {
-    "X-NCP-APIGW-API-KEY-ID": env("client_id"),
-    "X-NCP-APIGW-API-KEY": env("client_secret"),
-    "Content-Type": "application/octet-stream"
-}
-response = requests.post(url,  data=data, headers=headers)
-rescode = response.status_code
-if(rescode == 200):
-    print (response.text)
-else:
-    print("Error : " + response.text)
+    print("현재경로======> ",os.getcwd(),"\n")
+    print(title)
+    title = title.replace(':','_')
+    print(title)
+    lang = "Kor" # 언어 코드 ( Kor, Jpn, Eng, Chn )
+    url = "https://naveropenapi.apigw.ntruss.com/recog/v1/stt?lang=" + lang
+    data = open('{0}.ogg'.format(title), 'rb')
+    # data = open('{0}.ogg'.format("Fri Aug 12 2022 19_32_51 GMT+0900 (한국 표준시)"), 'rb')
+    
+    
+    headers = {
+        "X-NCP-APIGW-API-KEY-ID": env("client_id"),
+        "X-NCP-APIGW-API-KEY": env("client_secret"),
+        "Content-Type": "application/octet-stream"
+    }
+    response = requests.post(url,  data=data, headers=headers)
+    rescode = response.status_code
+    if(rescode == 200):
+        print (response.text)
+        return response.text
+    else:
+        print("Error : " + response.text)
+
+# get_text()

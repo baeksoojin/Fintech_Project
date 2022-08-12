@@ -5,6 +5,7 @@ from user.models import User
 from mission.models import Mission, MissionList
 import json
 from datetime import datetime
+from main.STT import get_text
 
 # Create your views here.
 
@@ -72,7 +73,7 @@ def give(request):
                     talk = request.POST['talk']
                     print(talk)
                     print("here")
-                    return render(request,'mission/talk.html',res_data)
+                    return render(request,'mission/STT.html',res_data)
                 except:
                     self = request.POST['self']
                     print(self)
@@ -151,3 +152,18 @@ def self(request):
         return render(request,'mission/self.html')
 
 
+def talk(request):
+
+    user = User
+    print(request.session.get('phoneNumber'))
+    member = user.objects.get(phoneNumber=request.session.get('phoneNumber'))#본인
+    res_data={}
+
+    if request.method=="POST":
+        audio = request.POST['audio']
+        print(audio)
+        text = get_text(audio)
+        print(text)
+        return render(request,'mission.html',res_data)
+    return render(request,'mission/STT.html')
+    
