@@ -49,7 +49,7 @@
 
     </div>
     <div id="appCapsule" style="text-align: center;" >
-        <form action="{% url 'mission:success' %}" method="POST">
+        <form action="{% url 'main:mission' %}" method="POST">
             {% csrf_token %}
             <input name="success" value="success" hidden>
             <button type="submit" class="btn btn-text-primary shadowed me-1 mb-1 btn-block btn-lg" style="background:whitesmoke; width: 80%;">       

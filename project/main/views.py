@@ -67,13 +67,21 @@ def mypage(request):
         return render(request,'user/mypage.html')
 
 def mission(request):
-
     try:
-        res_data = get_family(request)
-        res_data = get_family(request)
-        missions = Mission
-        mission_list = missions.objects.all()
-        res_data['mission_list'] = mission_list
-        return render(request,'mission.html',res_data)
+        if request.method=="POST":
+            success = request.POST['success']
+            print("success")
+            res_data = get_family(request)
+            missions = Mission
+            mission_list = missions.objects.all()
+            res_data['mission_list'] = mission_list
+            return render(request,'mission.html',res_data)
+        else:
+            res_data = get_family(request)
+            missions = Mission
+            mission_list = missions.objects.all()
+            res_data['mission_list'] = mission_list
+            return render(request,'mission.html',res_data)
     except:
+        print("mission_main_2")
         return render(request,'mission.html')

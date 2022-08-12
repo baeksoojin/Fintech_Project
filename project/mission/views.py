@@ -1,3 +1,4 @@
+from django.db import reset_queries
 from django.dispatch import receiver
 from django.shortcuts import redirect, render
 from user.models import User
@@ -66,11 +67,22 @@ def give(request):
         except:
             username = request.POST['username']
             res_data['username'] = username
-
-            mission = MissionList
-            missions = mission.objects.all()
-            res_data['missions'] = missions
-            return render(request,'mission/give.html',res_data)
+            try:
+                try:
+                    talk = request.POST['talk']
+                    print(talk)
+                    print("here")
+                    return render(request,'mission/talk.html',res_data)
+                except:
+                    self = request.POST['self']
+                    print(self)
+                    return render(request,'mission/self.html',res_data)
+            except:
+                mission = MissionList
+                missions = mission.objects.all()
+                res_data['missions'] = missions
+                return render(request,'mission/give.html',res_data)
+                
     else:
        
         return render(request,'mission.html',res_data)
@@ -102,15 +114,40 @@ def reward(request):
 
 def success(request):
 
-    if request.method=="POST":
-        success = request.POST['success']
-        print(success)
-        res_data = get_family(request)
-        missions = Mission
-        mission_list = missions.objects.all()
-        res_data['mission_list'] = mission_list
-        return render(request,'mission.html')
-    else:
-        print("here")
-        return render(request,'mission.html')
+    # if request.method=="POST":
+    #     success = request.POST['success']
+    #     print(success)
+    #     return render(request,'mission.html')
+    # else:
+    #     print("here")
+    return render(request,'mission.html')
     
+
+def self(request):
+    user = User
+    print(request.session.get('phoneNumber'))
+    member = user.objects.get(phoneNumber=request.session.get('phoneNumber'))#본인
+    res_data={}
+
+    if request.method=="POST":
+        receiver = request.POST['opponent']
+        text = request.POST['text']
+        print(text)
+
+        now = datetime.now()
+        mission = Mission
+        mission(username = member, receiver=receiver, date = now ,text=text).save()
+        mission_id = mission.objects.last().id
+        if mission.objects.filter(username = member.id).exists():
+                mission_id = mission.objects.last().id
+                print(mission_id)
+        print("mission_id",mission_id)
+        res_data['mission_id'] = mission_id
+        res_data['username'] =receiver
+
+        return render(request,'mission/reward.html',res_data)
+    
+    else:
+        return render(request,'mission/self.html')
+
+
