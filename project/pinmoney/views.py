@@ -174,3 +174,18 @@ def Regular_list(request):
         res_data = get_family(request)
         return render(request,'pinmoney.html',res_data)
 
+def Pinmoney_list(request):
+    user = User
+    member = user.objects.get(phoneNumber=request.session.get('phoneNumber'))#본인
+
+    if request.method=="POST":
+        res_data={}
+        regular = Pinmoney
+        transaction = regular.objects.filter(username = member.id)
+        print(transaction)
+        res_data['transaction'] = transaction
+
+        return render(request,'pinmoney/pinmoney_list.html',res_data)
+    else:
+        res_data = get_family(request)
+        return render(request,'pinmoney.html',res_data)
