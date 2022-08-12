@@ -10,4 +10,5 @@ urlpatterns = [
     path('mylogin',views.mylogin,name = "mylogin"),
     path('mypage',views.mypage,name = "mypage"),
     path('mission',views.mission,name = "mission"),
+    path('benefit',views.benefit,name = "benefit"),
 ]

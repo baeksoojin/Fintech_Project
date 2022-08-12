@@ -95,3 +95,6 @@ def mission(request):
     except:
         print("mission_main_2")
         return render(request,'mission.html')
+
+def benefit(request):
+    return render(request,'benefit.html',)
