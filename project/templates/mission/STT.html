@@ -12,7 +12,6 @@
 </body></html>
 
 
-
 {% load static %}
 <!doctype html>
 <html lang="en">
@@ -53,6 +52,7 @@
    <div id="appCapsule" style="text-align: center;" >
         <form action="{% url 'mission:talk' %}" method="POST">
             {% csrf_token %}
+            <input name="opponent" value="{{username}}" hidden>
             <button type="submit" value="no" id="submit" name = "audio" class="btn btn-text-primary shadowed me-1 mb-1 btn-block btn-lg" style="background:whitesmoke; width: 80%;">       
                 <div style="text-align:center; color:black">확인</div>
             </button>

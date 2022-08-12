@@ -160,10 +160,25 @@ def talk(request):
     res_data={}
 
     if request.method=="POST":
+        receiver = request.POST['opponent']
         audio = request.POST['audio']
-        print(audio)
+        print(audio,receiver)
         text = get_text(audio)
         print(text)
-        return render(request,'mission.html',res_data)
+        data = json.loads(text)
+        print(data['text'])
+
+        now = datetime.now()
+        mission = Mission
+        mission(username = member, receiver=receiver, date = now ,text=data['text']).save()
+        mission_id = mission.objects.last().id
+        if mission.objects.filter(username = member.id).exists():
+                mission_id = mission.objects.last().id
+                print(mission_id)
+        print("mission_id",mission_id)
+        res_data['mission_id'] = mission_id
+        res_data['username'] =receiver
+
+        return render(request,'mission/reward.html',res_data)
     return render(request,'mission/STT.html')
     
