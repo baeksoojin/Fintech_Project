@@ -173,3 +173,4 @@ def Regular_list(request):
     else:
         res_data = get_family(request)
         return render(request,'pinmoney.html',res_data)
+
