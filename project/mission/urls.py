@@ -7,5 +7,6 @@ urlpatterns = [
     path('give/',views.give,name='give'),
     path('reward/',views.reward,name='reward'),
     path('success/',views.success,name='success'),
+    path('self/',views.self,name='self'),
     
 ]

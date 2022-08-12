@@ -1,0 +1,11 @@
+<p>{{username}}에게 줄 미션을 직접 입력하세요</p>
+
+
+
+<form action ="{% url 'mission:self' %}" method="POST">
+    {% csrf_token %}
+    <input name="opponent" value="{{username}}" hidden>
+    <input name="text">
+    <button>미션주기</button>
+
+</form>
