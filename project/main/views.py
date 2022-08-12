@@ -2,6 +2,7 @@ from django.shortcuts import render
 from user.models import User
 import json
 from mission.models import Mission
+from pinmoney.models import Regular, Pinmoney
 
 # Create your views here.
 
@@ -47,9 +48,18 @@ def enjoy(request):
         return render(request,'enjoy.html')
 
 def pinmoney(request):
+    user = User
+    print(request.session.get('phoneNumber'))
+    member = user.objects.get(phoneNumber=request.session.get('phoneNumber'))#본인
 
     try:
         res_data = get_family(request)
+        regular = Regular
+        pinmoney = Pinmoney
+        regular_list = regular.objects.filter(username = member.id)
+        res_data['regular_list'] = regular_list
+        pinmoney_list = pinmoney.objects.filter(username = member.id)
+        res_data['pinmoney_list'] = pinmoney_list
         return render(request,'pinmoney.html',res_data)
     except:
         return render(request,'pinmoney.html')
