@@ -1,0 +1,399 @@
+{% load static %}
+{% if request.session.phoneNumber or user.is_authenticated %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#000000">
+    <title>내리사랑</title>
+    <meta name="description" content="Mobilekit HTML Mobile UI Kit">
+    <meta name="keywords" content="bootstrap 5, mobile template, cordova, phonegap, mobile, html" />
+    <link rel="icon" type="image/png" href="{% static 'img/mark.png'%} " sizes="32x32">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'img/icon/192x192.png'%} ">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+    <!-- loader -->
+    <div id="loader">
+        <div class="spinner-border text-primary" role="status"></div>
+    </div>
+    <!-- * loader -->
+
+    <!-- App Header -->
+    <div class="appHeader bg-primary scrolled">
+        <div class="left">
+            <a href="#" class="headerButton" data-bs-toggle="offcanvas" data-bs-target="#sidebarPanel">
+                <ion-icon name="menu-outline"></ion-icon>
+            </a>
+        </div>
+        <div class="pageTitle">
+            내리사랑
+        </div>
+        
+    </div>
+    <!-- * App Header -->
+
+    <!-- App Capsule -->
+
+    <div id="appCapsule">
+
+
+        <div class="header-large-title">
+            <h1 class="title">미션주기</h1>
+            <h4 class="subtitle">가족들과 재밌는 미션을 함께해봐요!</h4>
+        </div>
+
+
+        <!-- 용돈 제공 -->
+
+        <div class="section mt-3 mb-3">
+
+            {% if opponent_name %}
+
+                <div class="section mt-3 mb-3">
+                   
+   
+                <div class="card">
+                    <div class="card-body d-flex justify-content-between">
+                        <div style="width: 20%;">
+                            <img src="{% static 'img/enjoy4.png' %}"  alt="image" style="width:100%; padding: 5%;"class="imaged rounded">
+                            <form action="{% url 'mission:give' %}" method="POST" style="width: 100%; padding: 5%; text-align: center;"> 
+                                {% csrf_token %}
+                                <input name="username" value="{{opponent_name}}" hidden>
+                                <button type="submit" style="font-weight: bolder; color:black;background: white; font-size: 20px; border: 0; outline: 0;">{{opponent_name}}</button>
+                            </form>
+                           
+                        </div>
+                        <div style="width: 20%;">
+                            <img src="{% static 'img/enjoy4.png' %}"  alt="image" style="width:100%; padding: 5%;"class="imaged rounded">
+                            <p style="width: 100%; font-weight: bolder; font-size: 20px;padding: 5%; text-align: center;">차은우</p>
+                        </div>
+                        <div style="width: 20%;">
+                            <img src="{% static 'img/enjoy4.png' %}"  alt="image" style="width:100%; padding: 5%;"class="imaged rounded">
+                            <p style="width: 100%; font-weight: bolder; font-size: 20px;padding: 5%; text-align: center;">우영우</p>
+                        </div>
+                    </div>
+                  
+                </div>
+
+            {% endif %}
+
+        </div>
+    </div>
+
+       
+     <!--진행중인 미션내역 -->
+
+       <div class="section mt-3 mb-3">
+            <div class="card-body d-flex justify-content-between">
+            
+                <div style="width: 80%;"><h1>진행중인 미션내역</span></h1></div>
+                <div style="width: 20%;"><p style="font-size: 20px;">더보기</p></div>
+            </div>
+            <h3></h3>
+           
+
+            <div class="carousel-multiple splide" style="margin-bottom: 10%;">
+                <div class="splide__track">
+                    <ul class="splide__list">
+                        {% for mission in mission_list %}
+                            <li class="splide__slide" >
+                                <div class="card" >
+                                    <div class="card-body d-flex justify-content-between" style="align-items: center;">
+                                        <div style="width: 50%;">
+                                            <img src="{% static 'img/enjoy15.png' %}"  alt="image" style="width: 100%; padding: 20%;">
+                                        </div>
+                                        <div style="width: 50%;">
+                                            <h3 class="card-title mb-0 d-flex align-items-center justify-content-between">
+                                                {{mission.receiver}}
+                                            </h3>
+                                            <p style="font-size: 20px; color: gray;">{{mission.text}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                    
+                </div>
+            </div>
+           
+        </div>
+        
+        
+
+
+    <!--미션--> 
+        <div class="section mt-3 mb-3">
+            <div class="card-body d-flex justify-content-between">
+            
+                <div style="width: 80%;"><h1>정기 용돈미션</span> 관리</h1></div>
+                
+            </div>
+            <div class="card-body d-flex justify-content-between" >
+                <p style="width: 80%; font-size: 20px;">남들은 어떤 재밌는 것을 했을까요?</p>
+                <div style="width: 20%;"><p style="font-size: 20px;">더보기</p></div>
+            </div>
+            <h3></h3>
+        </div>
+
+        <div class="section full mt-3 mb-3">
+
+            <div class="carousel-multiple splide">
+                <div class="splide__track">
+                    <ul class="splide__list">
+                        <li class="splide__slide">
+                            <div class="card">
+                                <img src="{% static 'img/pinmoney1.png' %}" class="card-img-top" alt="image" >
+                            </div>
+                        </li>
+                        
+
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+        <div class="section mt-3 mb-3">
+            <div class="card-body d-flex justify-content-between">
+            
+                <div style="width: 80%;"><h1>최근 완료된 미션내역</span></h1></div>
+                <div style="width: 20%;"><p style="font-size: 20px;">더보기</p></div>
+            </div>
+            <h3></h3>
+        </div>
+
+
+        <div class="section mt-3 mb-3">
+            <div class="card">
+                <div class="card-body d-flex justify-content-between" style="align-items: center;">
+                    <div style="width: 30%;">
+                        <img src="{% static 'img/enjoy14.png' %}"  alt="image" style="width: 100%; padding: 20%;">
+                    </div>
+                    <div style="width: 70%;">
+                        <h3 class="card-title mb-0 d-flex align-items-center justify-content-between">
+                            우영우
+                        </h3>
+                        <p style="font-size: 20px;">영상통화로 얼굴 보여주기</p>
+                    </div>
+                </div>
+                
+            </div>
+        </div> 
+
+    <!-- 미션 내역 -->
+
+  
+    <!-- App Bottom Menu -->
+    <div class="appBottomMenu">
+        
+        <!-- <a href="/chatbot/" class="item">
+            <div class="col">
+                <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+                <span class="badge badge-danger">5</span>
+            </div>
+        </a> -->
+        <a href="app-pages.html" class="item">
+            <div class="col">
+                <ion-icon name="layers-outline"></ion-icon>
+            </div>
+        </a>
+        <a href="/" class="item active">
+            <div class="col">
+                <ion-icon name="home-outline"></ion-icon>
+            </div>
+        </a>
+        <a href="{% url 'main:mypage' %}"  class="item active" >
+            <div class="col">
+              <image src = "{% static 'img/mypage.png'%} " alt="mypage" class="imaged rounded " style="width:50px;">
+            </div>
+        </a>
+    </div>
+    <!-- * App Bottom Menu -->
+
+    <!-- App Sidebar -->
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="sidebarPanel">
+        <div class="offcanvas-body">
+        {% if request.session.phoneNumber or user.is_authenticated %}
+            {% if request.session.phoneNumber %} 
+                <!-- profile box -->
+                <div class="profileBox">
+                    <div class="image-wrapper">
+                        <img src="{% static 'img/sample/avatar/avatar1.jpg' %}" alt="image" class="imaged rounded">
+                    </div>
+                    <div class="in">
+                        <strong>{{request.session.username}}님  </strong>
+                        <a href="{% url 'user:logout' %}"><strong>로그아웃</strong></a>
+                    </div>
+                    <a href="#" class="close-sidebar-button" data-bs-dismiss="offcanvas">
+                        <ion-icon name="close"></ion-icon>
+                    </a>
+                </div>
+            {% else %}
+                    <!-- profile box -->
+                    <div class="profileBox">
+                        <div class="image-wrapper">
+                            <img src="{% static 'img/sample/avatar/avatar1.jpg' %}" alt="image" class="imaged rounded">
+                        </div>
+                        <div class="in">
+                            <strong>{{user.email}}님</strong>
+                            <a href="/accounts/logout"><strong>소셜 로그아웃</strong></a>
+                        </div>
+                        <a href="#" class="close-sidebar-button" data-bs-dismiss="offcanvas">
+                            <ion-icon name="close"></ion-icon>
+                        </a>
+                    </div>
+            {% endif %}
+            <!-- * profile box -->
+        {% else %}
+                <!-- profile box -->
+                <div class="profileBox">
+                    <div class="in">
+                        <a href="{% url 'user:login' %}"><strong>로그인</strong></a>
+                    </div>
+                    <a href="#" class="close-sidebar-button" data-bs-dismiss="offcanvas">
+                        <ion-icon name="close"></ion-icon>
+                    </a>
+                </div>
+
+        {% endif %}
+        <ul class="listview flush transparent no-line image-listview mt-2">
+            <li>
+                <a href = "{% url 'main:pinmoney' %}" class="item">
+                    <div class="icon-box bg-primary">
+                        <ion-icon name="cube-outline"></ion-icon>
+                    </div>
+                    <div class="in">
+                        용돈주기
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'main:mission' %}" class="item">
+                    <div class="icon-box bg-primary">
+                        <ion-icon name="cube-outline"></ion-icon>
+                    </div>
+                    <div class="in">
+                        <div>미션주기</div>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'main:bestowal' %}" class="item">
+                    <div class="icon-box bg-primary">
+                        <ion-icon name="cube-outline"></ion-icon>
+                    </div>
+                    <div class="in">
+                        <div>증여관리</div>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href = "{% url 'main:enjoy' %}" class="item">
+                    <div class="icon-box bg-primary">
+                        <ion-icon name="cube-outline"></ion-icon>
+                    </div>
+                    <div class="in">
+                        <div>오락마당</div>
+                    </div>
+                </a>
+            </li>
+        </ul>
+
+        <div class="listview-title mt-2 mb-1">
+            <span>Family</span>
+        </div>
+       
+        <ul class="listview image-listview flush transparent no-line">
+            {% if opponent_name %}
+            <li>
+                
+                <a href="/" class="item">
+                    <img src="{% static 'img/sample/avatar/avatar7.jpg' %}" alt="image" class="image">
+                    <div class="in">
+                        <div>{{opponent_name}}님</div>
+                    </div>
+                </a>
+            </li>
+            {% endif %}
+            <li>
+                <div class="item">
+                    <img src="{% static 'img/sample/avatar/avatar2.jpg' %}" alt="image" class="image">
+                    <div class="in">
+                        <div>우영우</div>
+                    </div>
+                </div>
+
+                
+            </li>
+            <li>
+                <div class="item">
+                    <img src="{% static 'img/sample/avatar/avatar2.jpg' %}" alt="image" class="image">
+                    <div class="in">
+                        <div>차은우</div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        </div>
+        <!-- sidebar buttons -->
+        <div class="sidebar-buttons">
+            <a href="#" class="button">
+                <ion-icon name="person-outline"></ion-icon>
+            </a>
+            <a href="#" class="button">
+                <ion-icon name="archive-outline"></ion-icon>
+            </a>
+            <a href="#" class="button">
+                <ion-icon name="settings-outline"></ion-icon>
+            </a>
+            <a href="#" class="button">
+                <ion-icon name="log-out-outline"></ion-icon>
+            </a>
+        </div>
+        <!-- * sidebar buttons -->
+    </div>
+    <!-- * App Sidebar -->
+
+    <!-- ============== Js Files ==============  -->
+    <!-- Bootstrap -->
+    <script src="/static/js/lib/bootstrap.min.js"></script>
+    <!-- Ionicons -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <!-- Splide -->
+    <script src="/static/js/plugins/splide/splide.min.js" ></script>
+    <!-- ProgressBar js -->
+    <script src="/static/js/plugins/progressbar-js/progressbar.min.js"></script>
+    <!-- Base Js File -->
+    <script src="/static/js/base.js"></script>
+
+    <script>
+        // Trigger welcome notification after 5 seconds
+        setTimeout(() => {
+            notification('notification-welcome', 5000);
+        }, 2000);
+    </script>
+
+</body>
+
+</html>
+
+
+{% else %}
+
+  <script>
+    alert("로그인이 필요한 페이지입니다");
+    document.location.href = "{% url 'user:login' %}"
+  </script>
+
+{% endif %}
