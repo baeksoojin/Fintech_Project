@@ -99,8 +99,8 @@ def mission(request):
 def benefit(request):
     return render(request,'benefit.html')
 
-def gift(request):
-    return render(request,'gift.html')
+def bestowal(request):
+    return render(request,'bestowal.html')
 
 
 def mypageui(request):
