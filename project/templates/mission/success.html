@@ -60,7 +60,13 @@
     
     <!-- App Bottom Menu -->
     <div class="appBottomMenu">
-    
+        
+        <!-- <a href="/chatbot/" class="item">
+            <div class="col">
+                <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+                <span class="badge badge-danger">5</span>
+            </div>
+        </a> -->
         <a href="app-pages.html" class="item">
             <div class="col">
                 <ion-icon name="layers-outline"></ion-icon>
@@ -71,9 +77,9 @@
                 <ion-icon name="home-outline"></ion-icon>
             </div>
         </a>
-        <a href="#" class="item" data-bs-toggle="offcanvas">
+        <a href="{% url 'main:mypage' %}"  class="item active" >
             <div class="col">
-               <img src = "{% static 'img/mypage.png'%} " alt="mypage" class="imaged rounded " style="width:50px;">
+              <image src = "{% static 'img/mypage.png'%} " alt="mypage" class="imaged rounded " style="width:50px;">
             </div>
         </a>
     </div>

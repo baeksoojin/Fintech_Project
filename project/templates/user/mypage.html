@@ -1,54 +1,286 @@
 {% load static %}
 {% load socialaccount %}
 {% if request.session.phoneNumber or user.is_authenticated %}
-{% if request.session.phoneNumber %} 
-        {{request.session.username}}님
-        <a href="{% url 'user:logout' %}">로그아웃</a></br>
-    {% else %}
-        {{user.email}}
-        <a href="/accounts/logout">소셜 로그아웃</a></br>
-    {% endif %}
+<!doctype html>
+<html lang="en">
+    
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#000000">
+    <title>내리사랑</title>
+    <meta name="description" content="Mobilekit HTML Mobile UI Kit">
+    <meta name="keywords" content="bootstrap 5, mobile template, cordova, phonegap, mobile, html" />
+    <link rel="icon" type="image/png" href="{% static 'img/mark.png'%} " sizes="32x32">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'img/icon/192x192.png'%} ">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
 
-<h1> mypage </h1>
+<body>
 
-<ul>
+    <!-- loader -->
+    <div id="loader">
+        <div class="spinner-border text-primary" role="status"></div>
+    </div>
+    <!-- * loader -->
 
-    <li>충전하기</li>
-    <li>
-        <div>
-            <p>가족 연결 현황</p>
-            {% if opponent_name %}
-                <p>[{{opponent_kind}}]{{opponent_name}}님이 연결되어있습니다.</p>
-            {% endif %}
-
-        <p>가족연결하기</p>
-        <a href="{% url 'user:connect' %}"> 가족연결하기 </a><br>
-        <a href="{% url 'user:check' %}">요청 확인하기</a></br>
+    <!-- App Header -->
+    <div class="appHeader bg-primary text-light">
+        <div class="left">
+            <a href="#" class="headerButton goBack">
+                <ion-icon name="chevron-back-outline"></ion-icon>
+            </a>
         </div>
-    </li>
-</ul>
-  
-{% else %}
+        <div class="pageTitle">내 정보</div>
+        
+    </div>
+
+    <!-- * App Header -->
+             <!-- * profile box -->
+    <!-- Dialog Clear -->
+    <div class="modal fade dialogbox" id="DialogClear" data-bs-backdrop="static" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Empty Cart</h5>
+                </div>
+                <div class="modal-body">
+                    All items will be deleted.
+                </div>
+                <div class="modal-footer">
+                    <div class="btn-inline">
+                        <a href="#" class="btn btn-text-secondary" data-bs-dismiss="modal">CLOSE</a>
+                        <a href="#" class="btn btn-text-primary" data-bs-dismiss="modal">DELETE</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- * Dialog Clear -->
+
+    <!-- App Capsule -->
+    <div id="appCapsule">
+        
+        <div class="section mt-2">
+       
+            <div>
+                
+                {% if request.session.phoneNumber %} 
+
+                <div style="width: 70%;">
+                    <h1 style="width:50%">{{request.session.username}}님</h1>
+                </div>
+                
+                {% else %}
+                <div style="width: 70%;">
+                    <h1 style="width:50%">{{user.email}}님</h1>
+                </div>
+                {% endif %}
+            </div>
+            <h4> 내 정보 수정 ></h4>
+
+    
+
+            <!-- item -->
+            <div class="card cart-item mb-2">
+                <div class="card-body">
+                    <div class="in">
+                        <img src="{% static 'img/hand.png' %}" alt="product" class="imaged">
+                        <div  style="width: 60%; margin-left: 3%;">
+                            <h6 class="card-title mb-0 d-flex align-items-center justify-content-between">충전금 현황</h6>
+                        </div>
+                        <div class="card-body d-flex justify-content-between" style="align-items: center;">
+
+                            <input name="username" value="{{username}}" hidden>
+                            <button type="submit" name="choice" value="{{mission.id}}" style="font-size: 20px; border: 0; outline: 0; background-color:white ;">친구추가</button>
+                           
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- * item -->
+            <!-- item -->
+            <div class="card cart-item mb-2">
+                <div class="card-body">
+                    <div class="in">
+                        <img src="{% static 'img/family.png' %}" alt="product" class="imaged">
+                        <div  style="width: 60%; margin-left: 3%;">
+                            <h6 class="card-title mb-0 d-flex align-items-center justify-content-between">내 가족</h6>
+                        </div>
+                        <div class="card-body d-flex justify-content-between" style="align-items: center; width: 50%;">
+
+                            <input name="username" value="{{username}}" hidden>
+                            <a href="{% url 'user:connect' %} " style="width: 100%;"><h6 class="card-title mb-0 d-flex align-items-center justify-content-between" style="font-size: 20px;">가족 추가</h6></a>
+                            <a href="{% url 'user:check' %}" style="width: 100%;"><h6 class="card-title mb-0 d-flex align-items-center justify-content-between" style="font-size: 20px;">요청 확인</h6></a>
+                            
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+                        <!-- * item -->
+            <!-- item -->
+            <div class="card cart-item mb-2">
+                <div class="card-body">
+                    <div class="in">
+                        <img src="{% static 'img/friends.png' %}" alt="product" class="imaged">
+                        <div  style="width: 60%; margin-left: 3%;">
+                            <h6 class="card-title mb-0 d-flex align-items-center justify-content-between">내 친구</h6>
+                        </div>
+                        <div class="card-body d-flex justify-content-between" style="align-items: center;">
+
+                            <input name="username" value="{{username}}" hidden>
+                            <button type="submit" name="choice" value="{{mission.id}}" style="font-size: 20px; border: 0; outline: 0; background-color:white ;">친구추가</button>
+                           
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="card cart-item mb-2">
+                <div class="card-body">
+                    <div class="in">
+                        <img src="{% static 'img/bag.png' %}" alt="product" class="imaged">
+                        <div  style="width: 60%; margin-left: 3%;">
+                            <h6 class="card-title mb-0 d-flex align-items-center justify-content-between">쇼핑내역</h6>
+                        </div>
+                        <div class="card-body d-flex justify-content-between" style="align-items: center;">
+
+                            <input name="username" value="{{username}}" hidden>
+                            <button type="submit" name="choice" value="{{mission.id}}" style="font-size: 20px; border: 0; outline: 0; background-color:white ;">내역보기</button>
+                           
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            
+            </div>
+
+
+        <div class="section mt-2 mb-2">
+             편의 기능
+            <div class="card">
+                <ul class="listview flush transparent simple-listview">
+                    <li>앱 가이드 <span class="text-muted"></span></li>
+                    <li>고객센터 <span class="text-muted"></span></li>
+                </ul>
+            </div>
+        </div>
+<!--        <div class="setting">-->
+<!--            설정-->
+<!--            <div/>-->
+        <div class="section mt-2 mb-2">
+            설정
+            <div class="card">
+                <ul class="listview flush transparent simple-listview">
+                    <li>충전계좌 관리<span class="text-muted"></span></li>
+                    <li>보안/인증/탈퇴<span class="text-primary font-weight-bold"></span></li>
+                    <li>가족관리<span class="text-muted"></span></li>
+                    <li>약관 및 서비스 이용동의<span class="text-muted"></span></li>
+                    {% if request.session.phoneNumber %} 
+                    <li ><a href="{% url 'user:logout' %}" style="font-size: 20px;">로그아웃</a><span class="text-muted"></span></li>
+                    {% else %}
+                    <li ><a href="{% url 'user:logout' %}" style="font-size: 20px;">로그아웃</a><span class="text-muted"></span></li>
+                    <a href="/accounts/logout">소셜 로그아웃</a></br>
+                    {% endif %}
+
+                </ul>
+            </div>
+        </div>
+    </div>
+
+        <!-- app footer -->
+
+        <div class="appFooter">
+            <img src="{% static 'img/mark.png'%} " style="width: 50px; margin-top:10%;" class="card-img-top" alt="image">
+            <div class="footer-title" style="margin-top:5%;">
+                Copyright © 핀테크 인턴십코스 4조 <span class="yearNow"></span>
+            </div>
+        </div>
+
+        <!-- * app footer -->
+
+    </div>
+    <!-- * App Capsule -->
+
+
+
+
+    <div class="appBottomMenu">
+        
+        <!-- <a href="/chatbot/" class="item">
+            <div class="col">
+                <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+                <span class="badge badge-danger">5</span>
+            </div>
+        </a> -->
+        <a href="app-pages.html" class="item">
+            <div class="col">
+                <ion-icon name="layers-outline"></ion-icon>
+            </div>
+        </a>
+        <a href="/" class="item active">
+            <div class="col">
+                <ion-icon name="home-outline"></ion-icon>
+            </div>
+        </a>
+        <a href="{% url 'main:mypage' %}"  class="item active" >
+            <div class="col">
+              <image src = "{% static 'img/mypage.png'%} " alt="mypage" class="imaged rounded " style="width:50px;">
+            </div>
+        </a>
+    </div>
+    <!-- * App Bottom Menu -->
+
+    <!-- ============== Js Files ==============  -->
+    <!-- Bootstrap -->
+    <script src="/static/js/lib/bootstrap.min.js"></script>
+    <!-- Ionicons -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <!-- Splide -->
+    <script src="/static/js/plugins/splide/splide.min.js" ></script>
+    <!-- ProgressBar js -->
+    <script src="/static/js/plugins/progressbar-js/progressbar.min.js"></script>
+    <!-- Base Js File -->
+    <script src="/static/js/base.js"></script>
+
     <script>
-        alert("로그인이 필요한 페이지입니다");
-        document.location.href = "{% url 'user:login' %}"
+        // Trigger welcome notification after 5 seconds
+        setTimeout(() => {
+            notification('notification-welcome', 5000);
+        }, 2000);
     </script>
+
+</body>
+
+</html>
+
+ 
+{% else %}
+<script>
+    alert("로그인이 필요한 페이지입니다");
+    document.location.href = "{% url 'user:login' %}"
+</script>
 
 {% endif %}
 
 {% if notice %}
 <script>
-    const notice = "{{notice}}";
-    alert(notice);
-    document.location.href = "{% url 'main:mypage' %}"
+const notice = "{{notice}}";
+alert(notice);
+document.location.href = "{% url 'main:mypage' %}"
 </script>
 {% endif %}
 
 {% if nan %}
 <script>
-    const notice = "{{nan}}";
-    alert(notice);
-    document.location.href = "{% url 'main:mypage' %}"
+const notice = "{{nan}}";
+alert(notice);
+document.location.href = "{% url 'main:mypage' %}"
 </script>
 {% endif %}
-

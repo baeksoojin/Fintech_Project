@@ -1,4 +1,5 @@
 {% load static %}
+{% if request.session.phoneNumber or user.is_authenticated %}
 <!doctype html>
 <html lang="en">
 
@@ -14,11 +15,8 @@
     <meta name="keywords" content="bootstrap 5, mobile template, cordova, phonegap, mobile, html" />
     <link rel="icon" type="image/png" href="{% static 'img/mark.png'%} " sizes="32x32">
     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'img/icon/192x192.png'%} ">
-    <link rel="stylesheet" href="{% static 'css/giftstyle.css' %}">
-    <!-- <link rel="stylesheet" href="{% static 'css/style.css' %}"> -->
-
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
-
 <body>
 
     <!-- loader -->
@@ -28,223 +26,99 @@
     <!-- * loader -->
 
     <!-- App Header -->
-    <div class="appHeader bg-primary text-light">
+    <div class="appHeader bg-primary scrolled">
         <div class="left">
-            <a href="#" class="headerButton goBack">
-                <ion-icon name="chevron-back-outline"></ion-icon>
+            <a href="#" class="headerButton" data-bs-toggle="offcanvas" data-bs-target="#sidebarPanel">
+                <ion-icon name="menu-outline"></ion-icon>
             </a>
         </div>
-        <div class="pageTitle">증여관리</div>
-        <div class="right">
-            <a href="#" class="headerButton" data-bs-toggle="modal" data-bs-target="#DialogClear">
-                <ion-icon name="trash-outline"></ion-icon>
-            </a>
+        <div class="pageTitle">
+            내리사랑
         </div>
+        
     </div>
-
     <!-- * App Header -->
-             <!-- * profile box -->
-    <!-- Dialog Clear -->
-    <div class="modal fade dialogbox" id="DialogClear" data-bs-backdrop="static" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Empty Cart</h5>
-                </div>
-                <div class="modal-body">
-                    All items will be deleted.
-                </div>
-                <div class="modal-footer">
-                    <div class="btn-inline">
-                        <a href="#" class="btn btn-text-secondary" data-bs-dismiss="modal">CLOSE</a>
-                        <a href="#" class="btn btn-text-primary" data-bs-dismiss="modal">DELETE</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- * Dialog Clear -->
 
     <!-- App Capsule -->
+
     <div id="appCapsule">
 
-        <div class="section mt-2">
-            <!-- item -->
-            <div class="card cart-item mb-2">
-                <div class="card-body">
-                    <div class="in">
-                        <img src="{% static 'img/sample/photo/product1.jpg' %}" alt="product" class="imaged">
-                        <div class="text">
-                            <h1 class="title">나의 증여금은?</h1>
-<!--                            <p class="detail">1 kg</p>-->
-<!--                            <strong class="price">$ 5.99</strong>-->
-                        </div>
-                    </div>
-<!--                    <div class="cart-item-footer">-->
-<!--                        <div class="stepper stepper-sm stepper-secondary">-->
-<!--&lt;!&ndash;                            <a href="#" class="stepper-button stepper-down">-</a>&ndash;&gt;-->
-<!--&lt;!&ndash;                            <input type="text" class="form-control" value="4" disabled />&ndash;&gt;-->
-<!--&lt;!&ndash;                            <a href="#" class="stepper-button stepper-up">+</a>&ndash;&gt;-->
-<!--                        </div>-->
-<!--&lt;!&ndash;                        <a href="#" class="btn btn-outline-secondary btn-sm">Delete</a>&ndash;&gt;-->
-<!--&lt;!&ndash;                        <a href="#" class="btn btn-outline-secondary btn-sm">Save it for later</a>&ndash;&gt;-->
-<!--                    </div>-->
-                </div>
-            </div>
-            <!-- * item -->
-                        <!-- item -->
-                        <div class="card cart-item mb-2">
-                            <div class="card-body">
-                                <div class="in">
-                                    <img src="{% static 'img/sample/photo/product2.jpg' %}" alt="product" class="imaged">
-                                    <div class="text">
-                                        <h3 class="title">증여세 절감 10년 계획</h3>
-<!--                                        <p class="detail">1 kg</p>-->
-<!--                                        <strong class="price">$ 8.99</strong>-->
-                                    </div>
-                                </div>
-<!--                                <div class="cart-item-footer">-->
-<!--                                    <div class="stepper stepper-sm stepper-secondary">-->
-<!--&lt;!&ndash;                                        <a href="#" class="stepper-button stepper-down">-</a>&ndash;&gt;-->
-<!--&lt;!&ndash;                                        <input type="text" class="form-control" value="1" disabled />&ndash;&gt;-->
-<!--&lt;!&ndash;                                        <a href="#" class="stepper-button stepper-up">+</a>&ndash;&gt;-->
-<!--                                    </div>-->
-<!--&lt;!&ndash;                                    <a href="#" class="btn btn-outline-secondary btn-sm">Delete</a>&ndash;&gt;-->
-<!--&lt;!&ndash;                                    <a href="#" class="btn btn-outline-secondary btn-sm">Save it for later</a>&ndash;&gt;-->
-<!--                                </div>-->
-                            </div>
-                        </div>
-                        <!-- * item -->
-            <!-- item -->
-            <div class="card cart-item mb-2">
-                <div class="card-body">
-                    <div class="in">
-                        <img src="{% static 'img/sample/photo/product3.jpg' %}" alt="product" class="imaged">
-                        <div class="text">
-                            <h3 class="title">증여법</h3>
-<!--                            <p class="detail">1 kg</p>-->
-<!--                            <strong class="price">$ 42.99</strong>-->
-                        </div>
-                    </div>
-<!--                    <div class="cart-item-footer">-->
-<!--                        <div class="stepper stepper-sm stepper-secondary">-->
-<!--&lt;!&ndash;                            <a href="#" class="stepper-button stepper-down">-</a>&ndash;&gt;-->
-<!--&lt;!&ndash;                            <input type="text" class="form-control" value="6" disabled />&ndash;&gt;-->
-<!--&lt;!&ndash;                            <a href="#" class="stepper-button stepper-up">+</a>&ndash;&gt;-->
-<!--                        </div>-->
-<!--&lt;!&ndash;                        <a href="#" class="btn btn-outline-secondary btn-sm">Delete</a>&ndash;&gt;-->
-<!--&lt;!&ndash;                        <a href="#" class="btn btn-outline-secondary btn-sm">Save it for later</a>&ndash;&gt;-->
-<!--                    </div>-->
-                </div>
-            </div>
-             <div class="card cart-item mb-2">
-                            <div class="card-body">
-                                <div class="in">
-                                    <img src="{% static 'img/sample/photo/product4.jpg' %}" alt="product" class="imaged">
-                                    <div class="text">
-                                        <h3 class="title">증여세 신고</h3>
-<!--                                        <p class="detail">1 kg</p>-->
-<!--                                        <strong class="price">$ 8.99</strong>-->
-                                    </div>
-                                </div>
-<!--                                <div class="cart-item-footer">-->
-<!--                                    <div class="stepper stepper-sm stepper-secondary">-->
-<!--&lt;!&ndash;                                        <a href="#" class="stepper-button stepper-down">-</a>&ndash;&gt;-->
-<!--&lt;!&ndash;                                        <input type="text" class="form-control" value="1" disabled />&ndash;&gt;-->
-<!--&lt;!&ndash;                                        <a href="#" class="stepper-button stepper-up">+</a>&ndash;&gt;-->
-<!--                                    </div>-->
-<!--&lt;!&ndash;                                    <a href="#" class="btn btn-outline-secondary btn-sm">Delete</a>&ndash;&gt;-->
-<!--&lt;!&ndash;                                    <a href="#" class="btn btn-outline-secondary btn-sm">Save it for later</a>&ndash;&gt;-->
-<!--                                </div>-->
-                            </div>
-                        </div>
-            <!-- * item -->
+
+        <div class="header-large-title">
+            <h1 class="title">증여관리</h1>
+            <h4 class="subtitle">용돈도 많이주면 증여세에 포함된다?</h4>
         </div>
 
-<!--        <div class="section">-->
-<!--            <a href="#" class="btn btn-sm btn-text-secondary btn-block" data-bs-toggle="offcanvas"-->
-<!--                data-bs-target="#actionSheetDiscount">-->
-<!--                <ion-icon name="qr-code-outline"></ion-icon>-->
-<!--                Have a discount code?-->
-<!--            </a>-->
-<!--        </div>-->
 
-<!--        &lt;!&ndash; Discount Action Sheet &ndash;&gt;-->
-<!--        <div class="offcanvas offcanvas-bottom action-sheet" tabindex="-1" id="actionSheetDiscount">-->
-<!--            <div class="offcanvas-header">-->
-<!--                <h5 class="offcanvas-title">Enter Discount Code</h5>-->
-<!--            </div>-->
-<!--            <div class="offcanvas-body">-->
-<!--                <div class="action-sheet-content">-->
-<!--                    <form>-->
-<!--                        <div class="form-group basic">-->
-<!--                            <div class="input-wrapper">-->
-<!--                                <label class="form-label" for="discount1">Discount Code</label>-->
-<!--                                <input type="text" class="form-control" id="discount1"-->
-<!--                                    placeholder="Enter your discount code">-->
-<!--                                <i class="clear-input">-->
-<!--                                    <ion-icon name="close-circle"></ion-icon>-->
-<!--                                </i>-->
-<!--                            </div>-->
-<!--                        </div>-->
+        <!-- 용돈 제공 -->
 
-<!--                        <div class="form-group basic">-->
-<!--                            <button type="button" class="btn btn-primary btn-block" data-bs-dismiss="offcanvas">Apply-->
-<!--                                Discount</button>-->
-<!--                        </div>-->
-<!--                    </form>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-        <!-- * Discount Action Sheet -->
-<!--        <div class="convinence">-->
-<!--            편의 기능-->
-<!--            <div/>-->
-<!--        <div class="section mt-2 mb-2">-->
-<!--             편의 기능-->
-<!--            <div class="card">-->
-<!--                <ul class="listview flush transparent simple-listview">-->
-<!--                    <li>앱 가이드 <span class="text-muted"></span></li>-->
-<!--                    <li>고객센터 <span class="text-muted"></span></li>-->
-<!--                </ul>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--&lt;!&ndash;        <div class="setting">&ndash;&gt;-->
-<!--&lt;!&ndash;            설정&ndash;&gt;-->
-<!--&lt;!&ndash;            <div/>&ndash;&gt;-->
-<!--        <div class="section mt-2 mb-2">-->
-<!--            설정-->
-<!--            <div class="card">-->
-<!--                <ul class="listview flush transparent simple-listview">-->
-<!--                    <li>충전계좌 관리<span class="text-muted"></span></li>-->
-<!--                    <li>보안/인증/탈퇴<span class="text-primary font-weight-bold"></span></li>-->
-<!--                    <li>가족관리<span class="text-muted"></span></li>-->
-<!--                    <li>약관 및 서비스 이용동의<span class="text-muted"></span></li>-->
-<!--                </ul>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
+        <div class="section mt-3 mb-3" >
+            <div class="card cart-item mb-2" >
+                <div class="card-body" style="background: #B5B5B5;">
+                    <div class="in">
+                        <div class="text" style="width: 80%;">
+                            <h1 class="title"  style="color : white; font-size: 20px;  font-weight: bolder;"> 나의 증여금은?</h1>
+                        </div>
+                        <div style="width: 30%;">
+                            <img  style="width:60%;" src="{% static 'img/hand.png' %}" alt="product" class="imaged">
+                        </div>
+                    </div>
+                    
 
-        <!-- app footer -->
-
-        <div class="appFooter">
-            <img src="{% static 'img/mark.png'%} " style="width: 50px; margin-top:10%;" class="card-img-top" alt="image">
-            <div class="footer-title" style="margin-top:5%;">
-                Copyright © 핀테크 인턴십코스 4조 <span class="yearNow"></span>
+                </div>
             </div>
+            <div class="card cart-item mb-2">
+                <div class="card-body"  style="background: #EA971B;">
+                    <div class="in">
+                        <div class="text" style="width: 80%;">
+                            <h1 class="title"  style="color : white; font-size: 20px;  font-weight: bolder;"> 증여세 절감 10년 계획</h1>
+                        </div>
+                        <div style="width: 30%;">
+                            <!-- <img  style="width:60%;" src="{% static 'img/sample/photo/product1.jpg' %}" alt="product" class="imaged"> -->
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="card cart-item mb-2">
+                <div class="card-body"  style="background: #25B344;">
+                    <div class="in">
+                        <div class="text" style="width: 80%;">
+                            <h1 class="title"  style="color : white; font-size: 20px;  font-weight: bolder;">증여법 </h1>
+                        </div>
+                        <div style="width: 30%;">
+                            <!-- <img  style="width:60%;" src="{% static 'img/sample/photo/product1.jpg' %}" alt="product" class="imaged"> -->
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="card cart-item mb-2">
+                <div class="card-body" style="background: #B32547;">
+                    <div class="in">
+                        <div class="text" style="width: 80%;">
+                            <h1 class="title"  style="color : white; font-size: 20px;  font-weight: bolder;">증여세 신고</h1>
+                        </div>
+                        <div style="width: 30%;">
+                            <!-- <img  style="width:60%;" src="{% static 'img/sample/photo/product1.jpg' %}" alt="product" class="imaged"> -->
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
         </div>
-
-        <!-- * app footer -->
-
+        <div class="section mt-3 mb-3" style="text-align: center;">
+                <p style=" font-size: 20px; margin-top: 7%; color:black">증여관리 서비스는 <span style="color:#F77E21">베타 서비스</span> 중입니다. </p>
+                <small style=" font-size: 20px; margin-bottom: 10%;">베타 기간 중 일부 기능만 제공합니다</small>
+        </div>
     </div>
-    <!-- * App Capsule -->
 
-
-
-
+    
+  
     <!-- App Bottom Menu -->
     <div class="appBottomMenu">
-
+        
         <!-- <a href="/chatbot/" class="item">
             <div class="col">
                 <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
@@ -261,9 +135,9 @@
                 <ion-icon name="home-outline"></ion-icon>
             </div>
         </a>
-        <a href="mypage.html" class="item active">
+        <a href="{% url 'main:mypage' %}"  class="item active" >
             <div class="col">
-                <img src = "{% static 'img/mypage.png'%} " alt="mypage" class="imaged rounded " style="width:50px;">
+              <image src = "{% static 'img/mypage.png'%} " alt="mypage" class="imaged rounded " style="width:50px;">
             </div>
         </a>
     </div>
@@ -272,127 +146,127 @@
     <!-- App Sidebar -->
     <div class="offcanvas offcanvas-start" tabindex="-1" id="sidebarPanel">
         <div class="offcanvas-body">
-            <!-- profile box -->
-            <div class="profileBox">
-                <div class="image-wrapper">
-                    <img src="{% static 'img/sample/avatar/avatar1.jpg' %}" alt="image" class="imaged rounded">
-                </div>
-                <div class="in">
-                    <strong>Julian Gruber</strong>
-                    <div class="text-muted">
-                        <ion-icon name="location"></ion-icon>
-                        California
+        {% if request.session.phoneNumber or user.is_authenticated %}
+            {% if request.session.phoneNumber %} 
+                <!-- profile box -->
+                <div class="profileBox">
+                    <div class="image-wrapper">
+                        <img src="{% static 'img/sample/avatar/avatar1.jpg' %}" alt="image" class="imaged rounded">
                     </div>
+                    <div class="in">
+                        <strong>{{request.session.username}}님  </strong>
+                        <a href="{% url 'user:logout' %}"><strong>로그아웃</strong></a>
+                    </div>
+                    <a href="#" class="close-sidebar-button" data-bs-dismiss="offcanvas">
+                        <ion-icon name="close"></ion-icon>
+                    </a>
                 </div>
-                <a href="#" class="close-sidebar-button" data-bs-dismiss="offcanvas">
-                    <ion-icon name="close"></ion-icon>
+            {% else %}
+                    <!-- profile box -->
+                    <div class="profileBox">
+                        <div class="image-wrapper">
+                            <img src="{% static 'img/sample/avatar/avatar1.jpg' %}" alt="image" class="imaged rounded">
+                        </div>
+                        <div class="in">
+                            <strong>{{user.email}}님</strong>
+                            <a href="/accounts/logout"><strong>소셜 로그아웃</strong></a>
+                        </div>
+                        <a href="#" class="close-sidebar-button" data-bs-dismiss="offcanvas">
+                            <ion-icon name="close"></ion-icon>
+                        </a>
+                    </div>
+            {% endif %}
+            <!-- * profile box -->
+        {% else %}
+                <!-- profile box -->
+                <div class="profileBox">
+                    <div class="in">
+                        <a href="{% url 'user:login' %}"><strong>로그인</strong></a>
+                    </div>
+                    <a href="#" class="close-sidebar-button" data-bs-dismiss="offcanvas">
+                        <ion-icon name="close"></ion-icon>
+                    </a>
+                </div>
+
+        {% endif %}
+        <ul class="listview flush transparent no-line image-listview mt-2">
+            <li>
+                <a href = "{% url 'main:pinmoney' %}" class="item">
+                    <div class="icon-box bg-primary">
+                        <ion-icon name="cube-outline"></ion-icon>
+                    </div>
+                    <div class="in">
+                        용돈주기
+                    </div>
                 </a>
-            </div>
-             <!-- * profile box -->
-
-            <ul class="listview flush transparent no-line image-listview mt-2">
-                <li>
-                    <a href="benefits.html" class="item">  <!-- Benefit html생성해야함 -->
-                        <div class="icon-box bg-primary">
-                            <ion-icon name="sparkles-outline"></ion-icon>
-                        </div>
-                        <div class="in">
-                            나를 위한 혜택
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="app-components.html" class="item">
-                        <div class="icon-box bg-primary">
-                            <ion-icon name="game-controller-outline"></ion-icon>
-                        </div>
-                        <div class="in">
-                            오락 마당
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="app-pages.html" class="item">
-                        <div class="icon-box bg-primary">
-                            <ion-icon name="bag-handle-outline"></ion-icon>
-                        </div>
-                        <div class="in">
-                            <div>가게</div>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="{% url 'Chatbot:chathome' %}" class="item">
-                        <div class="icon-box bg-primary">
-                            <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
-                        </div>
-                        <div class="in">
-                            <div>Chat</div>
-                            <span class="badge badge-danger">5</span>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <div class="item">
-                        <div class="icon-box bg-primary">
-                            <ion-icon name="moon-outline"></ion-icon>
-                        </div>
-                        <div class="in">
-                            <div>Dark Mode</div>
-                            <div class="form-check form-switch">
-                                <input class="form-check-input dark-mode-switch" type="checkbox" id="darkmodesidebar">
-                                <label class="form-check-label" for="darkmodesidebar"></label>
-                            </div>
-                        </div>
+            </li>
+            <li>
+                <a href="/" class="item">
+                    <div class="icon-box bg-primary">
+                        <ion-icon name="cube-outline"></ion-icon>
                     </div>
-                </li>
-            </ul>
+                    <div class="in">
+                        <div>미션주기</div>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="/" class="item">
+                    <div class="icon-box bg-primary">
+                        <ion-icon name="cube-outline"></ion-icon>
+                    </div>
+                    <div class="in">
+                        <div>증여관리</div>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href = "{% url 'main:enjoy' %}" class="item">
+                    <div class="icon-box bg-primary">
+                        <ion-icon name="cube-outline"></ion-icon>
+                    </div>
+                    <div class="in">
+                        <div>오락마당</div>
+                    </div>
+                </a>
+            </li>
+        </ul>
 
-            <div class="listview-title mt-2 mb-1">
-                <span>사랑스러운 손자 손녀</span>
-            </div>
-            <ul class="listview image-listview flush transparent no-line">
-                <li>
-                    <a href="{% url 'Chatbot:chathome' %}" class="item">
-                        <img src="{% static 'img/sample/avatar/avatar7.jpg' %}" alt="image" class="image">
-                        <div class="in">
-                            <div>차은우</div>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="{% url 'Chatbot:chathome' %}" class="item">
-                        <img src="{% static 'img/sample/avatar/avatar3.jpg' %}" alt="image" class="image">
-                        <div class="in">
-                            <div>한소희</div>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="{% url 'Chatbot:chathome' %}" class="item">
-                        <img src="{% static 'img/sample/avatar/avatar10.jpg' %}" alt="image" class="image">
-                        <div class="in">
-                            <div>우영우</div>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="{% url 'Chatbot:chathome' %}" class="item">
-                        <img src="{% static 'img/sample/avatar/avatar2.jpg' %}" alt="image" class="image">
-                        <div class="in">
-                            <div>동그라미</div>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="{% url 'Chatbot:chathome' %}" class="item">
-                        <img src="{% static 'img/sample/avatar/avatar5.jpg' %}" alt="image" class="image">
-                        <div class="in">
-                            <div>Henry Doe</div>
-                        </div>
-                    </a>
-                </li>
-            </ul>
+        <div class="listview-title mt-2 mb-1">
+            <span>Family</span>
+        </div>
+       
+        <ul class="listview image-listview flush transparent no-line">
+            {% if opponent_name %}
+            <li>
+                
+                <a href="/" class="item">
+                    <img src="{% static 'img/sample/avatar/avatar7.jpg' %}" alt="image" class="image">
+                    <div class="in">
+                        <div>{{opponent_name}}님</div>
+                    </div>
+                </a>
+            </li>
+            {% endif %}
+            <li>
+                <div class="item">
+                    <img src="{% static 'img/sample/avatar/avatar2.jpg' %}" alt="image" class="image">
+                    <div class="in">
+                        <div>우영우</div>
+                    </div>
+                </div>
+
+                
+            </li>
+            <li>
+                <div class="item">
+                    <img src="{% static 'img/sample/avatar/avatar2.jpg' %}" alt="image" class="image">
+                    <div class="in">
+                        <div>차은우</div>
+                    </div>
+                </div>
+            </li>
+        </ul>
         </div>
         <!-- sidebar buttons -->
         <div class="sidebar-buttons">
@@ -435,3 +309,63 @@
 </body>
 
 </html>
+
+
+{% else %}
+
+  <script>
+    alert("로그인이 필요한 페이지입니다");
+    document.location.href = "{% url 'user:login' %}"
+  </script>
+
+{% endif %}
+
+<style>
+
+    .cart-item .card-body {
+    padding: 16px;
+    }
+
+    .cart-item .imaged {
+    width: 80px;
+    height: auto;
+    }
+
+    .cart-item .in {
+    display: flex;
+    align-items: center;
+    }
+
+    .cart-item .in .text {
+    margin-left: 16px;
+    }
+
+    .cart-item .in .text .title {
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 1.2em;
+    margin: 0 0 6px 0;
+    }
+
+    .cart-item .in .text .detail {
+    line-height: 1.2em;
+    margin: 0 0 4px 0;
+    font-size: 11px;
+    color: #A1A1A2;
+    }
+
+    .cart-item .in .text .price {
+    font-weight: 500;
+    font-size: 15px;
+    color: #f89b00;
+    }
+
+    .cart-item .cart-item-footer {
+    border-top: 1px solid #E1E1E1;
+    padding: 16px 0 0 0;
+    margin: 16px 0 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    }
+</style>
