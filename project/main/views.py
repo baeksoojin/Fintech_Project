@@ -97,4 +97,11 @@ def mission(request):
         return render(request,'mission.html')
 
 def benefit(request):
-    return render(request,'benefit.html',)
+    return render(request,'benefit.html')
+
+def gift(request):
+    return render(request,'gift.html')
+
+
+def mypageui(request):
+    return render(request,'mypageui.html')

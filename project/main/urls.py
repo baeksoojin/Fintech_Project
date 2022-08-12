@@ -11,4 +11,6 @@ urlpatterns = [
     path('mypage',views.mypage,name = "mypage"),
     path('mission',views.mission,name = "mission"),
     path('benefit',views.benefit,name = "benefit"),
+    path('gift',views.gift,name = "gift"),
+    path('mypageui',views.mypageui,name = "mypageui"),
 ]
