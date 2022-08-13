@@ -114,6 +114,14 @@
                 </div>
                 
             </div>
+            
+        </div>
+        <div class="form-group boxed" style="margin-top: 2%;">
+            <form action="{% url 'pinmoney:regular' %}" method="POST">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-primary btn-block btn-lg">음성챗봇 용돈주기</button>
+            </form>
+            
         </div>
     </div>
 
@@ -393,7 +401,7 @@
                 </a>
             </li>
             <li>
-                <a href="/" class="item">
+                <a href="{% url 'main:mission' %}" class="item">
                     <div class="icon-box bg-primary">
                         <ion-icon name="cube-outline"></ion-icon>
                     </div>
