@@ -42,23 +42,38 @@
 </div>
 
 
-    <!-- App Capsule -->
-    <button id="record">녹음</button>
-    <button id="stop">정지</button>
-    <input type=checkbox id="chk-hear-mic"><label for="chk-hear-mic">마이크 소리 듣기</label>
-    <div id="sound-clips"></div>
+   
    
 
    <div id="appCapsule" style="text-align: center;" >
-        <form action="{% url 'mission:talk' %}" method="POST">
-            {% csrf_token %}
-            <input name="opponent" value="{{username}}" hidden>
-            <button type="submit" value="no" id="submit" name = "audio" class="btn btn-text-primary shadowed me-1 mb-1 btn-block btn-lg" style="background:whitesmoke; width: 80%;">       
-                <div style="text-align:center; color:black">확인</div>
-            </button>
-            
-            
-        </form>
+
+        <!-- App Capsule -->
+
+        <div class="section mt-1" style="margin-bottom: 10%;">
+            <h1>녹음버튼을 통해</h1>
+            <h2>을 제공할 미션을 말씀해주세요</h2>
+        </div>
+        <div class="section mt-1 mb-5" style="margin-top: 10%;">
+            <div id="sound-clips"></div>
+            <div>
+                <button id="record"class="btn btn-text-primary shadowed me-1 mb-1 btn-block btn-lg" style="background:whitesmoke; width: 40%;">녹음</button>
+                <button id="stop"class="btn btn-text-primary shadowed me-1 mb-1 btn-block btn-lg" style="background:whitesmoke; width: 40%;">정지</button>
+            </div>
+            <div>
+                <input type=checkbox id="chk-hear-mic"><label for="chk-hear-mic">마이크 소리 듣기</label>
+            </div>
+            <form action="{% url 'mission:talk' %}" method="POST">
+                {% csrf_token %}
+                <input name="opponent" value="{{username}}" hidden>
+                <button type="submit" value="no" id="submit" name = "audio" class="btn btn-text-primary shadowed me-1 mb-1 btn-block btn-lg" style="background:#F77E21 ;width: 80%;">       
+                    <div style="text-align:center; color:white">확인</div>
+                </button>
+            </form>
+           
+       
+        </div>
+
+        
     </div> 
     
     <!-- App Bottom Menu -->
