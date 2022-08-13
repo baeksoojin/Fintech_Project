@@ -142,19 +142,23 @@ def Check(request):
 
     if request.method == "POST":
         opponent_nickname = request.POST["opponent"]
-        mykind = request.POST["kind"] # True면 조부모 False면 손주
-        print(opponent_nickname, mykind)
+        oppkind = request.POST["kind"] # True면 상대가 시니어 -> False는 상대가 주니어
+        print(opponent_nickname, oppkind)
         opponent = user.objects.get(username=opponent_nickname)
         opponent.family = json.dumps([str(member.phoneNumber)])
         member.family = json.dumps([str(opponent.phoneNumber)])
         member.connect = json.dumps([])
 
-        if mykind == True:
-            member.kind = mykind
-            opponent.kind = False
-        else:
-            member.kind = mykind
-            opponent.kind = True
+        print(opponent.kind, member.kind) #시니어가 걸었다면 true false 순서
+
+        if oppkind == "True":
+            member.kind = False
+            opponent.kind = oppkind
+            print("here " ,member.kind,opponent.kind)
+        if oppkind == "False":
+            member.kind = True
+            opponent.kind = oppkind
+            print("here2 " ,member.kind,opponent.kind)
 
         member.save()
         opponent.save()
@@ -169,11 +173,14 @@ def Check(request):
                 res_data['nan'] ="연결요청이 없습니다"
                 return render(request,"user/mypage.html",res_data)
             else:
-                print("현재 connection 요쳥 : ",connection_list[0][0])
-                member2 = user.objects.get(phoneNumber=connection_list[0][0])
+                print("현재 connection 요쳥 : ",type(connection_list))
+                print(connection_list)
+                print(connection_list[0])
+                print()
+                member2 = user.objects.get(phoneNumber=connection_list[0])
                 res_data['name'] = member2.username
-                res_data['kind'] = connection_list[0][1]
-                print("kind :", connection_list[0][1])
+                res_data['kind'] = connection_list[1]
+                print("kind :", connection_list[1])
                 return render(request,"user/check.html",res_data)
         else:
             res_data['nan'] ="연결요청이 없습니다"
