@@ -26,3 +26,23 @@ def chatbot(request):
         # return render(request, "chatbot/chatbot.html",res_data)
         return JsonResponse(context, content_type='application/json')
    
+def voice(request):
+
+    try:
+        context= {}
+        text = request.GET['text']
+        print(text)
+        res_data={}
+        res = ChatbotMessageSender().req_message_send(text)
+        print(res.status_code)
+        print(json.loads(res.text))
+        
+        if(res.status_code == 200):
+            print(res.text)
+            print(type(res.text))
+            context['text'] = res.text
+            context['flag'] = '0'
+        # return render(request, "chatbot/chatbot.html",res_data)
+        return JsonResponse(context, content_type='application/json')
+    except:
+        return render(request, "chatbot/chathome.html",context)
