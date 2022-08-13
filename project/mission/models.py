@@ -12,3 +12,4 @@ class Mission(models.Model):
 
 class MissionList(models.Model):
     text = models.TextField(null=False)
+    section = models.CharField(null=False, max_length=1000)
