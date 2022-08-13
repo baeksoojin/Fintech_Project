@@ -4,7 +4,6 @@ from user.models import User
 from pinmoney.models import Pinmoney, Regular
 import json
 from datetime import datetime
-
 # Create your views here.
 
 def get_family(request):
@@ -111,6 +110,16 @@ def success(request):
         success = request.POST['success']
         print(success)
         res_data = get_family(request)
+        user = User
+        # print(request.session.get('phoneNumber'))
+        member = user.objects.get(phoneNumber=request.session.get('phoneNumber'))#본인
+
+        regular = Regular
+        pinmoney = Pinmoney
+        regular_list = regular.objects.filter(username = member.id)
+        res_data['regular_list'] = regular_list
+        pinmoney_list = pinmoney.objects.filter(username = member.id)
+        res_data['pinmoney_list'] = pinmoney_list
         return render(request,'pinmoney.html',res_data)
     else:
         print("here")
