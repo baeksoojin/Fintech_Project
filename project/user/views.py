@@ -44,6 +44,7 @@ def Signup(request):
             password = pw
             hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
             print(hashed_password)
+            hashed_password = hashed_password.decode('utf-8')
 
             member(username = username, phoneNumber = phoneNumber, password = hashed_password).save()
             return redirect('/')
@@ -68,9 +69,12 @@ def Login(request):
 
             #복호화진행
             password = data.password
-            hashed_password = password.decode('utf-8')
+            password = password.encode('utf-8')
+            pw = pw.encode('utf-8')
+            print("DB pw ",password)
+            print("입력된 pw",pw)
 
-            if hashed_password == pw:
+            if bcrypt.checkpw(pw, password):
                 request.session['phoneNumber'] = phoneNumber
                 request.session['username'] = data.username
                 request.session.permanent = True #자원의 효율적 운영을 위해 true로 놓음
