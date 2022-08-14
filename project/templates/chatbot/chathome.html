@@ -64,18 +64,31 @@
                     var obj =JSON.parse(data);
                     console.log(typeof(obj));
                     console.log(obj.text);
-                    const text_data = JSON.parse(obj.text);
-                    answer = text_data['bubbles'][0].data['description']
+                    console.log(obj.mytext);
+                    console.log(obj.text, obj.mytext);
+                    
+                    var answer ='';
+                    if(obj.text){
+                        text_data = JSON.parse(obj.text);
+                        // console.log(typeof(obj.text))
+                        answer =text_data['bubbles'][0].data['description']
+                        console.log(answer);
+                        console.log("here~~~~~");
+                    }
+                    if(obj.mytext){
+                        answer = obj.mytext;
+                    }
+                    console.log(answer);
                     if(!answer){
+                        text_data = JSON.parse(obj.text);
+                        console.log("hereererererere");
+                        temp = obj.text;
                         answer = text_data['bubbles'][0].data['cover']['data'].description}
                     console.log(answer);
                     if(obj.flag == "0"){
-
-
+                        
                         bottext = "<div class='message-item'><img src='"+'{% static "img/chatbot.png" %}'+"'alt='avatar' class='avatar'><div class='content'><div class='title' style='font-size:15px;'>챗봇</div><div class='bubble' style='font-size:20px; font-weight : bold;'>" + answer + "</div></div></div>";
-                                
                         document.getElementById("appCapsule").innerHTML += bottext;
-
                         var objDiv = document.getElementById("appCapsule");
 
                         objDiv.scrollTop = objDiv.scrollHeight;
