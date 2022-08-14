@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from user.models import User
 from .validation import *
 import json
+import bcrypt
 
 # Create your views here.
 def Signup(request):
@@ -38,7 +39,13 @@ def Signup(request):
             res_data['error'] = "이미 있는 닉네임입니다"
             return render(request,"user/signup.html",res_data)
         else:
-            member(username = username, phoneNumber = phoneNumber, password = pw).save()
+            
+            # 암호키를 사용하여 암호화진행하기
+            password = pw
+            hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
+            print(hashed_password)
+
+            member(username = username, phoneNumber = phoneNumber, password = hashed_password).save()
             return redirect('/')
 
     else: 
@@ -58,7 +65,12 @@ def Login(request):
             return render(request,'user/login.html',res_data)
         else:
             data = members.objects.get(phoneNumber = phoneNumber)
-            if data.password == pw:
+
+            #복호화진행
+            password = data.password
+            hashed_password = password.decode('utf-8')
+
+            if hashed_password == pw:
                 request.session['phoneNumber'] = phoneNumber
                 request.session['username'] = data.username
                 request.session.permanent = True #자원의 효율적 운영을 위해 true로 놓음
