@@ -1,13 +1,31 @@
 from django.db import reset_queries
 from django.dispatch import receiver
 from django.shortcuts import redirect, render
+from phonenumbers import PhoneNumber
 from user.models import User
-from mission.models import Mission, MissionList
+from mission.models import Mission, MissionList, Card
 import json
 from datetime import datetime
 from main.STT import get_text
 
 # Create your views here.
+def recomm_mission(request):
+
+    mission = MissionList
+    card = Card
+    user = User
+    print(request.session.get('phoneNumber'))
+    card_data = card.objects.filter(phonenumber=request.session.get('phoneNumber'))
+    print(card_data)
+
+    for i in card_data:
+        if i.ranking == '1':
+            print(i.section)
+            recomm_section = mission.objects.filter(section = i.section)
+            print(recomm_section)
+    
+    return recomm_section
+    
 
 def get_family(request):
     user = User
@@ -79,9 +97,13 @@ def give(request):
                     print(self)
                     return render(request,'mission/self.html',res_data)
             except:
+                recomm_missions = recomm_mission(request)
+                res_data['recomm_missions'] = recomm_missions
+
                 mission = MissionList
-                missions = mission.objects.all()
+                missions = mission.objects.all()[:5]
                 res_data['missions'] = missions
+
                 return render(request,'mission/give.html',res_data)
                 
     else:

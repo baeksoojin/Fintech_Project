@@ -40,6 +40,8 @@
 
     <!-- App Capsule -->
 
+    
+
     <div id="appCapsule">
 
 
@@ -50,8 +52,42 @@
 
 
         <!-- 용돈 내역 -->
+       
 
         <div class="section mt-3 mb-3">
+            <div>
+                <h1>나를 위한 <span style="color : #F77E21 ">추천미션</span></h1>
+            </div>
+            {% for mission in recomm_missions %}
+            <form action="{% url 'mission:give' %}" method="POST">
+                {% csrf_token %}
+           
+                <div class="card">
+                    <div class="card-body d-flex justify-content-between" style="align-items: center;">
+
+                        <div style="width: 80%;">
+                            
+                            <h5 class="card-title mb-0 d-flex align-items-center justify-content-between">
+                               
+                                {{mission.text}}
+                            </h5>
+                        </div>
+                    
+                        <div class="card-body d-flex justify-content-between" style="align-items: center;">
+
+                            <input name="username" value="{{username}}" hidden>
+                            <button type="submit" name="choice" value="{{mission.id}}" style="font-size: 20px; border: 0; outline: 0; background-color:white ;">선택하기</button>
+                           
+                        </div>
+                    </div>
+                </div>
+            </form>
+                
+            {% endfor %}
+            <div>
+                <h1>이러한 미션도 있어요!</h1>
+            </div>
+    
                         
             {% for mission in missions %}
             <form action="{% url 'mission:give' %}" method="POST">

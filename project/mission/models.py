@@ -13,3 +13,13 @@ class Mission(models.Model):
 class MissionList(models.Model):
     text = models.TextField(null=False)
     section = models.CharField(null=False, max_length=1000)
+
+class Card(models.Model):
+    card_id = models.AutoField(primary_key=True)
+    section = models.CharField(max_length=20)
+    ranking = models.CharField(max_length=20)
+    phonenumber = models.CharField(db_column='phoneNumber', max_length=20)  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'Card'
