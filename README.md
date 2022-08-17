@@ -46,3 +46,7 @@ python manage.py runserver
 python manage.py makemigrations
 python manage.py migrate
 ```
+
+## 2. 시연영상
+
+https://www.youtube.com/watch?v=9pXF6B2IQ54
