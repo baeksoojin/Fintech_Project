@@ -74,22 +74,25 @@ https://www.youtube.com/watch?v=9pXF6B2IQ54
 
 음성챗봇 활용 용돈주기<br>
 
-![image](https://user-images.githubusercontent.com/74058047/216102953-1b75f2fb-6279-4d01-912c-7c365e15483b.png)<br>
+![image](https://user-images.githubusercontent.com/74058047/216105986-7338c3ed-30d0-471d-83ee-43cffbf208f9.png)<br>
 
 정기용돈 관리 서비스<br>
+![image](https://user-images.githubusercontent.com/74058047/216106077-ba9583ac-0b30-44eb-b5af-6436a1e864e7.png)<br>
+![image](https://user-images.githubusercontent.com/74058047/216106143-03dd1d33-20b9-489e-97de-564bbcb7875b.png)
 
-![image](https://user-images.githubusercontent.com/74058047/216103094-2d3f8d25-2258-479f-a7a6-d5a1648df39c.png)<br>
-![image](https://user-images.githubusercontent.com/74058047/216103251-b73d8bf1-ffc3-499f-ac0c-773456d157be.png)<br>
 
 - 메인기능 : 미션주기<br>
 
-![image](https://user-images.githubusercontent.com/74058047/216103361-67158eb1-afad-4a70-baf8-fa60cde4f8b9.png)<br>
-![image](https://user-images.githubusercontent.com/74058047/216103460-5bebbf7b-df95-4d69-9f70-5260ca854e90.png)<br>
+![image](https://user-images.githubusercontent.com/74058047/216106245-4d9658df-2051-4f7a-88be-46bed45da87a.png)
+![image](https://user-images.githubusercontent.com/74058047/216106296-77ecc671-2ce2-4c03-a9db-19c611949539.png)
+![image](https://user-images.githubusercontent.com/74058047/216106496-d6f1725e-5519-4796-a8e1-f8dc088bf624.png)
 
 
 - UI만 구현<br>
 
-![image](https://user-images.githubusercontent.com/74058047/216103733-c28dbe9e-84f0-4224-afff-5c71c9ad91ab.png)<br>
-![image](https://user-images.githubusercontent.com/74058047/216103682-53682f67-2f1f-454c-82f6-b8ecb9dc9403.png)<br>
+![image](https://user-images.githubusercontent.com/74058047/216106562-7f41a0e9-ab65-4904-a266-16e98fbc3236.png)
+![image](https://user-images.githubusercontent.com/74058047/216106685-844f21fa-c09a-4572-ad27-49369708f2ae.png)
+![image](https://user-images.githubusercontent.com/74058047/216106750-b3944bf6-d626-4e14-99de-1ece7f46d113.png)
+![image](https://user-images.githubusercontent.com/74058047/216106802-ff15fc64-f337-47e7-9ce5-143d710f28aa.png)
 
 
